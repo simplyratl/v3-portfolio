@@ -1,22 +1,15 @@
-version: "3.7"
-
 services:
-  # TODO: Add a dev service
-  # dev:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.dev
-  #   container_name: portfolio
-  #   environment:
-  #     - WATCHPACK_POLLING=true
-  #   volumes:
-  #     - .:/app
-  #     - /app/node_modules
-  #     - /app/.next
-  #   ports:
-  #     - "3000:3000"
-  #   env_file:
-  #     - .env.local
+  portfolio-reverse-proxy:
+    image: traefik:v3.1
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   prod:
     build:
       context: .
@@ -27,3 +20,19 @@ services:
 
 volumes:
   node_modules:
+# TODO: Add a dev service
+# dev:
+#   build:
+#     context: .
+#     dockerfile: Dockerfile.dev
+#   container_name: portfolio
+#   environment:
+#     - WATCHPACK_POLLING=true
+#   volumes:
+#     - .:/app
+#     - /app/node_modules
+#     - /app/.next
+#   ports:
+#     - "3000:3000"
+#   env_file:
+#     - .env.local
