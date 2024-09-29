@@ -1,7 +1,8 @@
 import ButtonTabs from "@/components/ui/ButtonTabs";
 import ToggleTheme from "@/components/ui/ToggleTheme";
 import { socials } from "@/constants/socials";
-import { Icon } from "@iconify/react";
+import React from "react";
+import ArrowRightIcon from "@/icons/ArrowRightIcon";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
             Lead Frontend Engineer
           </p>
 
-          <ul className="mt-4 flex gap-2">
+          <ul className="mt-4 flex h-7 gap-2">
             {socials.map((social) => (
               <li key={social.name}>
                 <a
@@ -22,25 +23,32 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="text-2xl text-foreground transition-colors hover:text-foreground/60"
                 >
-                  <Icon icon={social.icon} />
+                  <div className="size-6">{social.icon}</div>
                 </a>
               </li>
             ))}
           </ul>
+
+          <a className="mt-3 inline-block" href="mailto:me@nikicaraznatovic.me">
+            me@nikicaraznatovic.me
+          </a>
         </div>
         <ToggleTheme />
       </div>
 
-      <div className="mt-8">
-        <ButtonTabs />
+      <div className="slide-enter-content mt-6">
+        <a
+          href="https://showcase.nikicaraznatovic.me"
+          target="_blank"
+          className="group mb-5 inline-flex items-center decoration-dotted"
+        >
+          You can also checkout showcase section portfolio{" "}
+          <span className="relative left-1 transition-all group-hover:left-2">
+            <ArrowRightIcon className="h-4 w-4" />
+          </span>
+        </a>
 
-        <div className="prose mt-4 dark:text-foreground">
-          <p>
-            <span className="font-mono">Crafting interfaces</span>. Building
-            polished software and web experiences. Experimenting with magical
-            details in user interfaces.
-          </p>
-        </div>
+        <ButtonTabs />
       </div>
     </div>
   );

@@ -1,13 +1,15 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { useAnimate } from "framer-motion";
 import { useTheme } from "next-themes";
-import React from "react";
+import React, { useEffect } from "react";
+import SunIcon from "@/icons/SunIcon";
+import MoonIcon from "@/icons/MoonIcon";
 
 const ToggleTheme = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme: theme, setTheme } = useTheme();
   const [scope, animate] = useAnimate();
+  const [isMounted, setIsMounted] = React.useState(false);
 
   const handleThemeSwitch = async () => {
     const directionRotation = theme === "light" ? 0 : 360;
@@ -25,28 +27,34 @@ const ToggleTheme = () => {
     animate("svg", { scale: 1, opacity: 1 });
   };
 
-  return (
-    <button
-      ref={scope}
-      className="h-9 w-9 rounded-lg border bg-background px-1.5 text-foreground hover:bg-primary hover:text-primary-foreground"
-      onClick={handleThemeSwitch}
-    >
-      <Icon
-        icon="heroicons:sun"
-        className="h-full w-full"
-        style={{
-          display: theme === "light" ? "block" : "none",
-        }}
-      />
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-      <Icon
-        icon="heroicons:moon"
-        className="h-full w-full"
-        style={{
-          display: theme === "dark" ? "block" : "none",
-        }}
-      />
-    </button>
+  if (!isMounted) return null;
+
+  return (
+    <>
+      <button
+        ref={scope}
+        className="h-9 w-9 rounded-lg border bg-background px-1.5 text-foreground hover:bg-primary hover:text-primary-foreground"
+        onClick={handleThemeSwitch}
+      >
+        <SunIcon
+          className="h-full w-full"
+          style={{
+            display: theme === "light" ? "block" : "none",
+          }}
+        />
+
+        <MoonIcon
+          className="h-full w-full"
+          style={{
+            display: theme === "dark" ? "block" : "none",
+          }}
+        />
+      </button>
+    </>
   );
 };
 
