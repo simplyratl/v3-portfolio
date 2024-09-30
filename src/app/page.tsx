@@ -7,7 +7,7 @@ import ArrowRightIcon from "@/icons/ArrowRightIcon";
 export default function Home() {
   return (
     <div>
-      <div className="flex items-start justify-between border-b pb-6">
+      <div className="flex items-start justify-between">
         <div>
           <h1 className="text-4xl font-semibold">Nikica Ražnatović</h1>
           <p className="font-mono text-lg text-primary">
@@ -36,7 +36,7 @@ export default function Home() {
         <ToggleTheme />
       </div>
 
-      <div className="slide-enter-content mt-6">
+      <div className="slide-enter-content mt-10">
         <a
           href="https://showcase.nikicaraznatovic.me"
           target="_blank"
