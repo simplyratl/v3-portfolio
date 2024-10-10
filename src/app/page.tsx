@@ -3,13 +3,17 @@ import ToggleTheme from "@/components/ui/ToggleTheme";
 import { socials } from "@/constants/socials";
 import React from "react";
 import ArrowRightIcon from "@/icons/ArrowRightIcon";
+import Logo from "@/icons/Logo";
 
 export default function Home() {
   return (
     <div>
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-4xl font-semibold">Nikica Ražnatović</h1>
+          <div className="flex items-center gap-3">
+            <Logo />
+            <h1 className="text-4xl font-semibold">Nikica Ražnatović</h1>
+          </div>
           <p className="font-mono text-lg text-primary">
             Lead Frontend Engineer
           </p>

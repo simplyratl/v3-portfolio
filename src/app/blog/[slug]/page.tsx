@@ -4,6 +4,7 @@ import { Mdx } from "@/components/shared/markdown/MDXComponent";
 import ToggleTheme from "@/components/ui/ToggleTheme";
 import BackButton from "@/components/shared/BackButton";
 import { format } from "date-fns";
+import Logo from "@/icons/Logo";
 
 type BlogPageProps = {
   params: {
@@ -30,7 +31,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
   return (
     <main>
       <div className="mb-4 flex h-10 items-center justify-between">
-        <BackButton />
+        <div className="flex items-center gap-3">
+          <BackButton className="peer" />
+          <Logo />
+        </div>
         <ToggleTheme />
       </div>
       <article className="slide-enter-content">
