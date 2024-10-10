@@ -32,6 +32,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: hsl(var(--foreground));
   background: hsl(var(--background));
@@ -73,10 +77,11 @@ a {
   }
 }
 
+
 .slide-enter-content > *:not(:has(.table-of-contents)) {
   --stagger: 0;
   --delay: 100ms;
-  --start: 0ms;
+    --start: 0ms;
   animation: slide-enter 1s both 1;
   animation-delay: calc(var(--start) + var(--stagger) * var(--delay));
 }

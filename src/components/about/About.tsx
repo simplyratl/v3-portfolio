@@ -10,21 +10,20 @@ export default function About() {
       </p>
 
       <p>
-        In the past I’ve developed the{" "}
-        <a
-          href="https://google.com"
-          target="_blank"
-          referrerPolicy="no-referrer"
-        >
-          Vercel
-        </a>{" "}
-        design system, website, and dashboard.
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        In the past I've developed tools, internal design systems, and
+        applications.
       </p>
 
       <p>
-        Working at NuxtLabs Creator of Vitest Slidev VueUse UnoCSS Elk Type
-        Challenges Core team of Vue Nuxt Vite Maintaining Shiki Twoslash ESLint
-        Stylistic
+        Currently, working as a Lead Frontend Engineer at{" "}
+        <a
+          href="https://coreit.me/"
+          target="_blank"
+          referrerPolicy="no-referrer"
+        >
+          Coreit
+        </a>
       </p>
       <p>
         Dreaming up ideas and making them come true is where my passion lies.
@@ -32,10 +31,9 @@ export default function About() {
         compform, interactivity experiments.
       </p>
       <p>
-        Outside of programming, I enjoy doing photography and traveling. Some of
-        my photos can be found on Instagram. Right now I live in Paris. If you
-        are around, feel free to reach me out, we could have some coffee or work
-        together.
+        Outside of programming, I enjoy traveling. Right now I live in
+        Podgorica. If you are around, feel free to reach me out, we could have
+        some coffee or work together.
       </p>
     </div>
   );

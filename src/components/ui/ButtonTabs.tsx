@@ -41,6 +41,9 @@ export default function ButtonTabs() {
                 transition={{
                   duration: 0.6,
                   type: "spring",
+                  bounce: 0.3,
+                  mass: 0.5,
+                  velocity: 10,
                 }}
               ></motion.div>
             )}
