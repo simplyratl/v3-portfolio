@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "@/components/shared/Providers";
 import { Newsreader } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,6 +37,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased ${newsReader.variable}`}
       >
+        <NextTopLoader color="hsl(var(--primary))" />
+
         <Providers>
           <main className="mx-auto max-w-screen-md px-4 pt-8">{children}</main>
         </Providers>
