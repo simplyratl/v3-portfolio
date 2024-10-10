@@ -49,12 +49,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
       {blog.toc && (
         <aside>
-          <ul className="max-h- fixed left-4 top-20 hidden max-w-60 space-y-2 overflow-y-auto text-balance xl:block">
+          <ul className="group/list fixed left-4 top-20 hidden max-h-60 max-w-60 scroll-p-2.5 space-y-2 overflow-y-auto text-balance xl:block">
             {blog.headings.map((heading: Headings) => {
               return (
                 <li key={`#${heading.slug}`} className="group">
                   <a
-                    className="data-[level=three]:pl-4"
+                    className="!text-muted/40 group-hover/list:!text-inherit data-[level=three]:pl-4"
                     data-level={heading.level}
                     href={`#${heading.slug}`}
                   >
