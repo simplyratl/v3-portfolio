@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-3">
-            <Logo />
+            <Logo className="size-8" />
             <h1 className="text-4xl font-semibold">Nikica Ražnatović</h1>
           </div>
           <p className="font-mono text-lg text-primary">

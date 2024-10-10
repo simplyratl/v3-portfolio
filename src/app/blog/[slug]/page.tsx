@@ -33,7 +33,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <div className="mb-4 flex h-10 items-center justify-between">
         <div className="flex items-center gap-3">
           <BackButton className="peer" />
-          <Logo />
+          <Logo className="size-9" />
         </div>
         <ToggleTheme />
       </div>

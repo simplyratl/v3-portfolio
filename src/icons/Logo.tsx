@@ -9,7 +9,7 @@ export default function Logo(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 82 106"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn("size-8 stroke-foreground", props.className)}
+      className={cn("stroke-foreground", props.className)}
       {...props}
     >
       <path
