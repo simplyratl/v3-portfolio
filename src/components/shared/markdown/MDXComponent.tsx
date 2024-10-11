@@ -83,7 +83,7 @@ const components = {
   pre: ({ ...props }) => (
     <pre
       className={cn(
-        "mb-4 mt-6 overflow-x-auto rounded-lg p-4",
+        "mb-4 mt-6 overflow-x-auto rounded-lg p-4 [&::-webkit-scrollbar]:h-1.5",
         props.className,
       )}
       {...props}

@@ -37,7 +37,7 @@ const ToggleTheme = () => {
     <>
       <button
         ref={scope}
-        className="h-9 w-9 rounded-lg border bg-background px-1.5 text-foreground hover:bg-primary hover:text-primary-foreground"
+        className="h-9 w-9 rounded-lg border border-muted/30 bg-background px-1.5 text-foreground hover:bg-primary hover:text-primary-foreground"
         onClick={handleThemeSwitch}
       >
         <SunIcon
