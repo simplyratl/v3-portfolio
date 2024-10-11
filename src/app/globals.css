@@ -146,3 +146,31 @@ a {
 .slide-enter-content > *:nth-child(20) {
   --stagger: 20;
 }
+
+/* width */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply rounded-full bg-muted/10;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-primary;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#toc::-webkit-scrollbar {
+  @apply hidden;
+}
+
+#toc:hover::-webkit-scrollbar {
+  @apply block;
+}
