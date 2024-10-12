@@ -1,5 +1,7 @@
 "use client";
 
+import { LinkPreview } from "@/components/ui/LinkPreview";
+
 export default function About() {
   return (
     <div className="slide-enter-content prose mt-4 text-pretty dark:text-foreground">
@@ -15,16 +17,10 @@ export default function About() {
         applications.
       </p>
 
-      <p>
+      <div>
         Currently, working as a Lead Frontend Engineer at{" "}
-        <a
-          href="https://coreit.me/"
-          target="_blank"
-          referrerPolicy="no-referrer"
-        >
-          Coreit
-        </a>
-      </p>
+        <LinkPreview url="https://coreit.me/">Coreit</LinkPreview>
+      </div>
       <p>
         Dreaming up ideas and making them come true is where my passion lies.
         You can find my full projects list here. I also do some generative-art,

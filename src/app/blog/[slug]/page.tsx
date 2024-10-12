@@ -5,6 +5,7 @@ import ToggleTheme from "@/components/ui/ToggleTheme";
 import BackButton from "@/components/shared/BackButton";
 import { format } from "date-fns";
 import Logo from "@/icons/Logo";
+import Header from "@/components/shared/Header";
 
 type BlogPageProps = {
   params: {
@@ -39,13 +40,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <main>
-      <div className="mb-4 flex h-10 items-center justify-between">
-        <div className="flex items-center gap-3">
-          <BackButton className="peer" />
-          <Logo className="size-9" />
-        </div>
-        <ToggleTheme />
-      </div>
+      <Header className="mb-4" enableBack />
+
       <article className="slide-enter-content">
         <h1 className="text-4xl font-semibold">{blog.title}</h1>
         <p className="mt-3 text-muted/50">

@@ -1,9 +1,7 @@
 import { allProjects } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { Mdx } from "@/components/shared/markdown/MDXComponent";
-import ToggleTheme from "@/components/ui/ToggleTheme";
-import BackButton from "@/components/shared/BackButton";
-import Logo from "@/icons/Logo";
+import Header from "@/components/shared/Header";
 
 type ProjectPageProps = {
   params: {
@@ -38,13 +36,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main>
-      <div className="mb-4 flex h-10 items-center justify-between">
-        <div className="flex items-center gap-3">
-          <BackButton className="peer" />
-          <Logo className="size-9" />
-        </div>
-        <ToggleTheme />
-      </div>
+      <Header className="mb-4" enableBack />
+
       <article className="slide-enter-content">
         <h1 className="text-4xl font-semibold">{projects.title}</h1>
         <div className="mt-10">
