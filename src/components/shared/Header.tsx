@@ -4,7 +4,6 @@ import React from "react";
 import Logo from "@/icons/Logo";
 import { cn } from "@/utils/tailwindUtils";
 import { useRouter } from "next/navigation";
-import ArrowRightIcon from "@/icons/ArrowRightIcon";
 import { ArrowLeftIcon } from "@/icons/ArrowLeftIcon";
 import Link from "next/link";
 

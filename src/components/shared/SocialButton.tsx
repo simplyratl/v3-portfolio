@@ -2,8 +2,7 @@
 
 import ArrowUpRightIcon from "@/icons/ArrowUpIcon";
 import { useEffect, useState } from "react";
-import { AnimatePresence, useAnimate } from "framer-motion";
-import { motion } from "framer-motion";
+import { motion, useAnimate } from "framer-motion";
 import Tooltip from "@/components/shared/Tooltip";
 
 type Props = {

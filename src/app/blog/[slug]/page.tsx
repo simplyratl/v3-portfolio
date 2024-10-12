@@ -1,10 +1,7 @@
 import { allBlogs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { Mdx } from "@/components/shared/markdown/MDXComponent";
-import ToggleTheme from "@/components/ui/ToggleTheme";
-import BackButton from "@/components/shared/BackButton";
 import { format } from "date-fns";
-import Logo from "@/icons/Logo";
 import Header from "@/components/shared/Header";
 
 type BlogPageProps = {
