@@ -3,42 +3,12 @@
 import { stagger, useAnimate } from "framer-motion";
 import { useEffect } from "react";
 import ArrowUpRightIcon from "@/icons/ArrowUpIcon";
-
-const projects = [
-  {
-    title: "Vercel",
-    description: "Design system, website, and dashboard.",
-    link: "https://google.com",
-  },
-  {
-    title: "Resend",
-    description: "Design system, website, and dashboard.",
-    link: "https://google.com",
-  },
-  {
-    title: "Vercel",
-    description: "Design system, website, and dashboard.",
-    link: "https://google.com",
-  },
-  {
-    title: "Resend",
-    description: "Design system, website, and dashboard.",
-    link: "https://google.com",
-  },
-  {
-    title: "Vercel",
-    description: "Design system, website, and dashboard.",
-    link: "https://google.com",
-  },
-  {
-    title: "Resend",
-    description: "Design system, website, and dashboard.",
-    link: "https://google.com",
-  },
-];
+import { allProjects } from "contentlayer/generated";
+import Link from "next/link";
 
 export default function Projects() {
   const [scope, animate] = useAnimate();
+  const projects = allProjects;
 
   useEffect(() => {
     const initialAnimation = async () => {
@@ -68,7 +38,7 @@ export default function Projects() {
     };
 
     initialAnimation();
-  }, []);
+  }, [animate]);
 
   return (
     <div
@@ -84,15 +54,13 @@ export default function Projects() {
         >
           <h2 className="text-md font-semibold">{project.title}</h2>
           <p>{project.description}</p>
-          <a
-            href={project.link}
-            target="_blank"
-            referrerPolicy="no-referrer"
+          <Link
+            href={`${project.slug}`}
             className="inline-flex items-center gap-1"
           >
             Link
             <ArrowUpRightIcon className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       ))}
     </div>
