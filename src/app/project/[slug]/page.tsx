@@ -49,7 +49,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {projects.toc && (
         <aside>
           <ul
-            className="fixed left-4 top-20 hidden max-h-[80vh] max-w-60 scroll-p-2.5 space-y-2 overflow-y-auto text-balance text-sm opacity-40 transition-opacity hover:opacity-100 xl:block"
+            className="fixed left-4 top-20 hidden max-h-[80vh] max-w-60 scroll-p-2.5 space-y-2 overflow-y-auto text-balance text-sm opacity-80 transition-opacity hover:opacity-100 xl:block"
             id="toc"
           >
             {projects.headings.map((heading: Headings) => {

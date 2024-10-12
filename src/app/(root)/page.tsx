@@ -8,10 +8,8 @@ import Header from "@/components/shared/Header";
 export default function Home() {
   return (
     <div className="relative">
-      <Header className="mb-4" />
+      <Header className="mb-4" transparentSwitch />
 
-      <div className="absolute -left-10 -top-60 z-[-1] size-[30rem] rounded-full bg-gradient-to-br from-cyan-200 to-sky-800 opacity-20 blur-2xl dark:opacity-15"></div>
-      <div className="absolute -right-20 -top-72 z-[-1] size-[30rem] rounded-full bg-gradient-to-br from-violet-100 to-violet-800 opacity-20 blur-2xl dark:opacity-15"></div>
       <div>
         <div className="flex w-full justify-between">
           <div>
@@ -30,8 +28,8 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="mt-4 inline-flex items-center rounded-full bg-green-300 bg-opacity-60 px-4 py-1 text-xs dark:bg-green-900">
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4">
+          <div className="inline-flex min-w-40 items-center rounded-full bg-green-300 bg-opacity-60 px-4 py-1 text-xs dark:bg-green-900">
             <span className="relative flex size-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-800 opacity-75 duration-700 dark:bg-green-300"></span>
               <span className="relative inline-flex size-2 rounded-full bg-green-600 dark:bg-green-600"></span>

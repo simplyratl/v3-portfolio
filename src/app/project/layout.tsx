@@ -6,7 +6,7 @@ type Props = {
 export default function ProjectLayout({ children }: Props) {
   return (
     <div>
-      <main className="mx-auto max-w-screen-xl">{children}</main>
+      <main className="mx-auto max-w-screen-md px-4 pt-8">{children}</main>
     </div>
   );
 }

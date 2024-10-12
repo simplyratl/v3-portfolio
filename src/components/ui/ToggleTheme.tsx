@@ -5,8 +5,13 @@ import { useTheme } from "next-themes";
 import React, { useEffect } from "react";
 import SunIcon from "@/icons/SunIcon";
 import MoonIcon from "@/icons/MoonIcon";
+import { cn } from "@/utils/tailwindUtils";
 
-const ToggleTheme = () => {
+type Props = {
+  className?: string;
+};
+
+const ToggleTheme = ({ className }: Props) => {
   const { resolvedTheme: theme, setTheme } = useTheme();
   const [scope, animate] = useAnimate();
   const [isMounted, setIsMounted] = React.useState(false);
@@ -37,7 +42,10 @@ const ToggleTheme = () => {
     <>
       <button
         ref={scope}
-        className="h-9 w-9 rounded-lg border border-muted/30 bg-background px-1.5 text-foreground hover:bg-primary hover:text-primary-foreground"
+        className={cn(
+          "h-9 w-9 rounded-lg border border-muted/30 bg-background px-1.5 text-foreground hover:bg-primary hover:text-primary-foreground",
+          className,
+        )}
         onClick={handleThemeSwitch}
       >
         <SunIcon

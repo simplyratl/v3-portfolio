@@ -40,7 +40,7 @@ export default function RootLayout({
         <NextTopLoader color="hsl(var(--primary))" />
 
         <Providers>
-          <main className="mx-auto max-w-screen-md px-4 pt-8">{children}</main>
+          <main>{children}</main>
         </Providers>
       </body>
     </html>

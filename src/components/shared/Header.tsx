@@ -10,9 +10,14 @@ import Link from "next/link";
 type Props = {
   className?: string;
   enableBack?: boolean;
+  transparentSwitch?: boolean;
 };
 
-export default function Header({ className, enableBack }: Props) {
+export default function Header({
+  className,
+  enableBack,
+  transparentSwitch,
+}: Props) {
   const router = useRouter();
 
   return (
@@ -30,7 +35,9 @@ export default function Header({ className, enableBack }: Props) {
           <Logo className="size-8" />
         </Link>
       </div>
-      <ToggleTheme />
+      <ToggleTheme
+        className={transparentSwitch ? "bg-background/20 backdrop-blur" : ""}
+      />
     </header>
   );
 }
