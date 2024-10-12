@@ -27,8 +27,10 @@ const ToggleTheme = ({ className }: Props) => {
       { type: "spring", duration: 0.7 },
     );
 
+    // Toggle between themes
     setTheme(theme === "light" ? "dark" : "light");
 
+    // Reset SVG state after animation
     animate("svg", { scale: 1, opacity: 1 });
   };
 
@@ -43,7 +45,7 @@ const ToggleTheme = ({ className }: Props) => {
       <button
         ref={scope}
         className={cn(
-          "h-9 w-9 rounded-lg border border-muted/30 bg-background px-1.5 text-foreground hover:bg-primary hover:text-primary-foreground",
+          "h-9 w-9 rounded-lg border border-muted/30 bg-background px-1.5 text-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-[0px_0px_50px_10px] hover:shadow-primary",
           className,
         )}
         onClick={handleThemeSwitch}
