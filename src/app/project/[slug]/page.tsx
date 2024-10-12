@@ -2,6 +2,7 @@ import { allProjects } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { Mdx } from "@/components/shared/markdown/MDXComponent";
 import Header from "@/components/shared/Header";
+import React from "react";
 
 type ProjectPageProps = {
   params: {
@@ -35,7 +36,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const projects = await getDocFromParams(params.slug);
 
   return (
-    <main>
+    <main className="relative">
       <Header className="mb-4" enableBack />
 
       <article className="slide-enter-content">

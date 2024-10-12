@@ -97,7 +97,7 @@ export default function SocialButton({ social }: Props) {
           initial={{ opacity: 0, scale: 0.5 }}
           className="absolute inset-0 overflow-hidden rounded-xl bg-primary p-2"
         >
-          <ArrowUpRightIcon className="h-4 w-4 text-white dark:text-muted" />
+          <ArrowUpRightIcon className="h-4 w-4 text-primary-foreground" />
         </motion.a>
       </li>
     </Tooltip>

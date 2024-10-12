@@ -27,8 +27,9 @@
     --muted: 100 100% 100%;
     --muted-foreground: 0 0% 100%;
 
-    --primary: 243 82% 64%;
-    --primary-foreground: 0 0% 100%;
+    /*--primary: 243 82% 64%;*/
+    --primary: 0 0% 80%;
+    --primary-foreground: 0 0% 10%;
   }
 }
 
