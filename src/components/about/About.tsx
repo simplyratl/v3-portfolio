@@ -4,7 +4,7 @@ import { LinkPreview } from "@/components/ui/LinkPreview";
 
 export default function About() {
   return (
-    <div className="slide-enter-content prose mt-4 text-pretty dark:text-foreground">
+    <div className="slide-enter-content prose text-pretty dark:text-foreground">
       <p>
         <span className="newsreader italic">Crafting interfaces</span>. Building
         polished, functional software and web experiences. Adding magic to the
@@ -19,7 +19,9 @@ export default function About() {
 
       <div>
         Currently, working as a Lead Frontend Engineer at{" "}
-        <LinkPreview url="https://coreit.me/">Coreit</LinkPreview>
+        <LinkPreview url="https://coreit.me/" external>
+          Coreit
+        </LinkPreview>
       </div>
       <p>
         Dreaming up ideas and making them come true is where my passion lies.

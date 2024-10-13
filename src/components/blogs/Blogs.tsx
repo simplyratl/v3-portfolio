@@ -3,6 +3,7 @@
 import ArrowUpRightIcon from "@/icons/ArrowUpIcon";
 import { allBlogs } from "contentlayer/generated";
 import Link from "next/link";
+import { LinkPreview } from "@/components/ui/LinkPreview";
 
 const getAllBlogs = () => {
   return allBlogs;
@@ -41,10 +42,13 @@ export default function Blogs() {
               key={blog.title}
               className="mt-4 text-pretty dark:text-foreground"
             >
-              <Link
-                href={`${blog.slug}`}
-                className="inline-flex items-center gap-1"
-              >
+              {/*TODO: Da li koristiti link preview za blogove?*/}
+              {/*<LinkPreview*/}
+              {/*  url={`${blog.slug}`}*/}
+              {/*  className="inline-flex items-center gap-1"*/}
+              {/*>*/}
+              {/*</LinkPreview>*/}
+              <Link href={blog.slug} className="inline-flex items-center gap-1">
                 <h2 className="text-md font-semibold">{blog.title}</h2>
                 <ArrowUpRightIcon className="h-4 w-4" />
               </Link>
