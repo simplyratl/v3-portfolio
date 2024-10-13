@@ -3,7 +3,6 @@
 import ArrowUpRightIcon from "@/icons/ArrowUpIcon";
 import { allBlogs } from "contentlayer/generated";
 import Link from "next/link";
-import { LinkPreview } from "@/components/ui/LinkPreview";
 
 const getAllBlogs = () => {
   return allBlogs;

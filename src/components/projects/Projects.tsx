@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { allProjects } from "contentlayer/generated";
 import Link from "next/link";
 import ArrowRightUpIcon from "@/icons/ArrowRightUpIcon";
+import Tooltip from "@/components/shared/Tooltip";
 
 export default function Projects() {
   const [scope, animate] = useAnimate();
@@ -42,17 +43,6 @@ export default function Projects() {
 
   return (
     <section>
-      <ul className="mb-4 inline-flex gap-2">
-        {projects.map((project) => (
-          <li
-            key={project.slug}
-            className="rounded-full bg-foreground px-3 py-1 text-xs text-background"
-          >
-            {project.tag}
-          </li>
-        ))}
-      </ul>
-
       <div
         className="slide-enter-content grid grid-cols-[repeat(auto-fill,_minmax(300px,1fr))] gap-4"
         id="tab-projects"
@@ -71,15 +61,25 @@ export default function Projects() {
               <h2 className="text-md font-semibold">{project.title}</h2>
               <ArrowRightUpIcon className="h-4 w-4" />
             </Link>
+
             <p>{project.description}</p>
-            <Link
-              href={`${project.slug}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1"
-            >
-              Link
-            </Link>
+            <div className="mt-3 flex items-center justify-between">
+              <div className="w-fit rounded-full bg-foreground px-3 py-1 text-xs text-background">
+                {project.tag}
+              </div>
+
+              <Tooltip text="Opens in new tab" position="top">
+                <Link
+                  href={`${project.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1"
+                >
+                  Link
+                  <ArrowRightUpIcon className="h-4 w-4" />
+                </Link>
+              </Tooltip>
+            </div>
           </div>
         ))}
       </div>
