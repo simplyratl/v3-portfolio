@@ -10,12 +10,12 @@ import { NextjsIcon } from "@/icons/brands/NextjsIcon";
 
 const stack = [
   {
-    name: "React",
-    icon: <ReactIcon />,
-  },
-  {
     name: "Nextjs",
     icon: <NextjsIcon />,
+  },
+  {
+    name: "React",
+    icon: <ReactIcon />,
   },
   {
     name: "Vue",
