@@ -45,8 +45,8 @@ export default function Projects() {
     <section>
       <div className="slide-enter-content">
         <p className="text-sm text-muted/50">
-          There are few projects that I'm not allowed to share publicly, but
-          they all are internal tools, design systems, and applications.{" "}
+          There are few projects that I&apos;m not allowed to share publicly,
+          but they all are internal tools, design systems, and applications.{" "}
           <span className="font-semibold underline decoration-dashed">
             They are either banks systems or other confidential projects.
           </span>
