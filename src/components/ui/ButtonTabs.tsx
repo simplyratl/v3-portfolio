@@ -7,6 +7,7 @@ import About from "@/components/about/About";
 import Projects from "@/components/projects/Projects";
 import Blogs from "@/components/blogs/Blogs";
 import { Stack } from "@/components/home/Stack";
+import Tooltip from "@/components/shared/Tooltip";
 
 const buttons = ["About", "Projects", "Blog"];
 
@@ -24,7 +25,7 @@ export default function ButtonTabs() {
 
   return (
     <div className="relative">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex gap-1">
           {buttons.map((button) => (
             <button
@@ -55,16 +56,23 @@ export default function ButtonTabs() {
           ))}
         </div>
 
-        <button
-          className={cn(
-            "h-full rounded-2xl px-3 py-1.5 text-foreground/50 transition-colors hover:text-foreground",
-            stackActive &&
-              "bg-foreground text-background hover:text-background",
-          )}
-          onClick={() => setStackActive(!stackActive)}
+        <Tooltip
+          text={
+            stackActive ? "Hide my tech stack" : "Take a look at my tech stack"
+          }
+          position="top"
         >
-          My Stack
-        </button>
+          <button
+            className={cn(
+              "h-full rounded-2xl px-3 py-1.5 text-foreground/50 transition-colors hover:text-foreground",
+              stackActive &&
+                "border border-muted/15 bg-muted/10 text-foreground hover:text-foreground dark:bg-muted/20 dark:text-foreground",
+            )}
+            onClick={() => setStackActive(!stackActive)}
+          >
+            My Stack
+          </button>
+        </Tooltip>
       </div>
 
       <div className="mt-6 px-4" id="tab-content">
@@ -74,7 +82,8 @@ export default function ButtonTabs() {
               initial={{ height: 0 }}
               animate={{ height: 60 }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.5, type: "spring" }}
+              className="h-full"
             >
               <Stack />
             </motion.div>
