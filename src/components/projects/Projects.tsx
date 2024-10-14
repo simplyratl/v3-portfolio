@@ -51,7 +51,7 @@ export default function Projects() {
         {projects.map((project) => (
           <div
             key={project.title}
-            className="text-pretty dark:text-foreground"
+            className="relative text-pretty pb-10 dark:text-foreground"
             id="project"
           >
             <Link
@@ -80,6 +80,8 @@ export default function Projects() {
                 </Link>
               </Tooltip>
             </div>
+
+            <div className="pointer-events-none absolute bottom-0 left-0 h-[40%] w-full bg-gradient-to-t from-background to-transparent"></div>
           </div>
         ))}
       </div>
