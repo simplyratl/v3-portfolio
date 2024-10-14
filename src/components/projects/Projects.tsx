@@ -43,8 +43,20 @@ export default function Projects() {
 
   return (
     <section>
+      <div className="slide-enter-content">
+        <p className="text-sm text-muted/50">
+          There are few projects that I'm not allowed to share publicly, but
+          they all are internal tools, design systems, and applications.{" "}
+          <span className="font-semibold underline decoration-dashed">
+            They are either banks systems or other confidential projects.
+          </span>
+        </p>
+
+        <div className="mt-4 h-0.5 w-full bg-muted/10"></div>
+      </div>
+
       <div
-        className="slide-enter-content grid grid-cols-[repeat(auto-fill,_minmax(300px,1fr))] gap-4"
+        className="slide-enter-content mt-5 grid grid-cols-[repeat(auto-fill,_minmax(300px,1fr))] gap-4"
         id="tab-projects"
         ref={scope}
       >
