@@ -41,7 +41,7 @@ const itemVariants = {
   exit: { opacity: 0, y: -20, scale: 0.8 },
 };
 
-export const Stack = () => {
+export default function Stack() {
   return (
     <div className="mb-4 flex flex-nowrap gap-2 overflow-x-auto pb-2.5 [&::-webkit-scrollbar]:h-1.5">
       {stack.map((item) => (
@@ -62,4 +62,4 @@ export const Stack = () => {
       ))}
     </div>
   );
-};
+}

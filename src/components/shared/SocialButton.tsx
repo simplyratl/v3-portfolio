@@ -85,6 +85,7 @@ export default function SocialButton({ social }: Props) {
           target="_blank"
           rel="noopener noreferrer"
           className="text-foreground transition-colors hover:text-foreground/60"
+          aria-label={`${social.name} profile`}
         >
           <div className="size-5">{social.icon}</div>
         </a>

@@ -60,7 +60,7 @@ export default function Projects() {
         id="tab-projects"
         ref={scope}
       >
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <div
             key={project.title}
             className="relative text-pretty pb-10 dark:text-foreground"
@@ -69,6 +69,7 @@ export default function Projects() {
             <Link
               href={`${project.slug}`}
               className="inline-flex items-center gap-1"
+              prefetch={index < 3}
             >
               <h2 className="text-md font-semibold">{project.title}</h2>
               <ArrowRightUpIcon className="h-4 w-4" />

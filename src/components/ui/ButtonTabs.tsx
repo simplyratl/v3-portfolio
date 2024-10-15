@@ -3,11 +3,15 @@
 import { cn } from "@/utils/tailwindUtils";
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import About from "@/components/about/About";
-import Projects from "@/components/projects/Projects";
-import Blogs from "@/components/blogs/Blogs";
-import { Stack } from "@/components/home/Stack";
 import Tooltip from "@/components/shared/Tooltip";
+
+const Stack = dynamic(() => import("@/components/home/Stack"));
+const Projects = dynamic(() => import("@/components/projects/Projects"), {
+  ssr: true,
+});
+const Blogs = dynamic(() => import("@/components/blogs/Blogs"), { ssr: true });
 
 const buttons = ["About", "Projects", "Blog"];
 

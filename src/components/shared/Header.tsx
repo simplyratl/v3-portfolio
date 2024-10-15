@@ -31,7 +31,7 @@ export default function Header({
             <ArrowLeftIcon className="size-full" />
           </button>
         )}
-        <Link href={"/"}>
+        <Link href={"/"} aria-label="Home">
           <Logo className="size-8" />
         </Link>
       </div>

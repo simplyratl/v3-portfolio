@@ -48,6 +48,7 @@ const ToggleTheme = ({ className }: Props) => {
           "h-9 w-9 rounded-xl border border-muted/30 bg-background px-1.5 text-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-[0px_0px_50px_10px] hover:shadow-primary",
           className,
         )}
+        aria-label="Toggle theme"
         onClick={handleThemeSwitch}
       >
         <SunIcon
