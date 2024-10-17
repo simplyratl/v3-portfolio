@@ -55,6 +55,10 @@ export const Projects = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    publicLink: {
+      type: "string",
+      required: false,
+    },
   },
   computedFields,
 }));

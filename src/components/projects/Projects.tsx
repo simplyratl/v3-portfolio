@@ -75,23 +75,25 @@ export default function Projects() {
               <ArrowRightUpIcon className="h-4 w-4" />
             </Link>
 
-            <p>{project.description}</p>
+            <p className="line-clamp-2 text-pretty">{project.description}</p>
             <div className="mt-3 flex items-center justify-between">
               <div className="w-fit rounded-full bg-foreground px-3 py-1 text-xs text-background">
                 {project.tag}
               </div>
 
-              <Tooltip text="Opens in new tab" position="top">
-                <Link
-                  href={`${project.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1"
-                >
-                  Link
-                  <ArrowRightUpIcon className="h-4 w-4" />
-                </Link>
-              </Tooltip>
+              {project.publicLink && (
+                <Tooltip text="Opens in new tab" position="top">
+                  <Link
+                    href={`${project.publicLink}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1"
+                  >
+                    Link
+                    <ArrowRightUpIcon className="h-4 w-4" />
+                  </Link>
+                </Tooltip>
+              )}
             </div>
 
             <div className="pointer-events-none absolute bottom-0 left-0 h-[40%] w-full bg-gradient-to-t from-background to-transparent"></div>
