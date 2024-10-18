@@ -3,16 +3,11 @@
 import { cn } from "@/utils/tailwindUtils";
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import About from "@/components/about/About";
 import Tooltip from "@/components/shared/Tooltip";
-
-// Dynamic imports
-const Stack = dynamic(() => import("@/components/home/Stack"));
-const Projects = dynamic(() => import("@/components/projects/Projects"), {
-  ssr: true,
-});
-const Blogs = dynamic(() => import("@/components/blogs/Blogs"), { ssr: true });
+import Stack from "@/components/home/Stack";
+import Projects from "@/components/projects/Projects";
+import Blogs from "@/components/blogs/Blogs";
 
 const buttons = ["About", "Projects", "Blog"];
 
@@ -28,18 +23,9 @@ export default function ButtonTabs() {
   const [active, setActive] = React.useState(buttons[0]);
   const [stackActive, setStackActive] = React.useState(false);
 
-  // Function to preload the dynamic imports
-  const handleMouseEnter = (button: string) => {
-    if (button === "Projects") {
-      import("@/components/projects/Projects");
-    } else if (button === "Blog") {
-      import("@/components/blogs/Blogs");
-    }
-  };
-
   return (
     <div className="relative">
-      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex gap-1">
           {buttons.map((button) => (
             <button
@@ -51,7 +37,6 @@ export default function ButtonTabs() {
                   : "text-foreground/50 hover:text-foreground",
               )}
               onClick={() => setActive(button)}
-              onMouseEnter={() => handleMouseEnter(button)} // Preload on hover
             >
               {active === button && (
                 <motion.div
@@ -73,20 +58,39 @@ export default function ButtonTabs() {
 
         <Tooltip
           text={
-            stackActive ? "Hide my tech stack" : "Take a look at my tech stack"
+            stackActive ? "Hide tech stack" : "Take a look at my tech stack"
           }
           position="top"
         >
           <button
             className={cn(
-              "h-full rounded-2xl px-3 py-1.5 text-foreground/50 transition-colors hover:text-foreground",
-              stackActive &&
-                "border border-muted/15 bg-muted/10 text-foreground hover:text-foreground dark:bg-muted/20 dark:text-foreground",
+              "group relative inline-block cursor-pointer rounded-full bg-primary/20 p-px text-xs font-semibold leading-6 no-underline shadow-2xl shadow-zinc-900",
             )}
             onClick={() => setStackActive(!stackActive)}
           >
-            My Stack
+            <span className="absolute inset-0 overflow-hidden rounded-full">
+              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            </span>
+            <div
+              className={cn(
+                "relative z-10 flex items-center space-x-2 rounded-full bg-background px-4 py-0.5 text-foreground ring-1 ring-white/10",
+                stackActive && "bg-foreground text-background",
+              )}
+            >
+              <span>My stack</span>
+            </div>
+            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-opacity duration-500 group-hover:opacity-40" />
           </button>
+
+          {/*<button*/}
+          {/*  className={cn(*/}
+          {/*    "h-full rounded-2xl border border-transparent px-3 py-1.5 text-foreground/50 transition-colors hover:text-foreground",*/}
+          {/*    stackActive &&*/}
+          {/*    "border border-muted/15 bg-muted/10 text-foreground hover:text-foreground dark:bg-muted/20 dark:text-foreground",*/}
+          {/*  )}*/}
+          {/*>*/}
+          {/*  My Stack*/}
+          {/*</button>*/}
         </Tooltip>
       </div>
 
@@ -105,7 +109,6 @@ export default function ButtonTabs() {
           )}
         </AnimatePresence>
 
-        {/* Render the selected tab content */}
         {selectedTabs[active]}
       </div>
     </div>
