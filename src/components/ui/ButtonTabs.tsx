@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import About from "@/components/about/About";
 import Tooltip from "@/components/shared/Tooltip";
 
+// Dynamic imports
 const Stack = dynamic(() => import("@/components/home/Stack"));
 const Projects = dynamic(() => import("@/components/projects/Projects"), {
   ssr: true,
@@ -27,6 +28,15 @@ export default function ButtonTabs() {
   const [active, setActive] = React.useState(buttons[0]);
   const [stackActive, setStackActive] = React.useState(false);
 
+  // Function to preload the dynamic imports
+  const handleMouseEnter = (button: string) => {
+    if (button === "Projects") {
+      import("@/components/projects/Projects");
+    } else if (button === "Blog") {
+      import("@/components/blogs/Blogs");
+    }
+  };
+
   return (
     <div className="relative">
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -41,6 +51,7 @@ export default function ButtonTabs() {
                   : "text-foreground/50 hover:text-foreground",
               )}
               onClick={() => setActive(button)}
+              onMouseEnter={() => handleMouseEnter(button)} // Preload on hover
             >
               {active === button && (
                 <motion.div
@@ -94,6 +105,7 @@ export default function ButtonTabs() {
           )}
         </AnimatePresence>
 
+        {/* Render the selected tab content */}
         {selectedTabs[active]}
       </div>
     </div>
