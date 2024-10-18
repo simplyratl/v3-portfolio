@@ -6,10 +6,12 @@ import { allProjects } from "contentlayer/generated";
 import Link from "next/link";
 import ArrowRightUpIcon from "@/icons/ArrowRightUpIcon";
 import Tooltip from "@/components/shared/Tooltip";
+import { useRouter } from "next/navigation";
 
 export default function Projects() {
   const [scope, animate] = useAnimate();
   const projects = allProjects;
+  const router = useRouter();
 
   useEffect(() => {
     const initialAnimation = async () => {
@@ -60,16 +62,16 @@ export default function Projects() {
         id="tab-projects"
         ref={scope}
       >
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <div
             key={project.title}
             className="relative text-pretty pb-10 dark:text-foreground"
             id="project"
+            onMouseEnter={() => router.prefetch(project.slug)}
           >
             <Link
               href={`${project.slug}`}
               className="inline-flex items-center gap-1"
-              prefetch={index < 3}
             >
               <h2 className="text-md font-semibold">{project.title}</h2>
               <ArrowRightUpIcon className="h-4 w-4" />
