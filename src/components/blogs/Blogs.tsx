@@ -3,6 +3,7 @@
 import ArrowUpRightIcon from "@/icons/ArrowUpIcon";
 import { allBlogs } from "contentlayer/generated";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const getAllBlogs = () => {
   return allBlogs;
@@ -26,6 +27,8 @@ const blogsByYear = () => {
 
 export default function Blogs() {
   const blogs = blogsByYear();
+  const router = useRouter();
+
   return (
     <div
       className="slide-enter-content grid grid-cols-1 gap-2 space-y-8"
@@ -40,6 +43,7 @@ export default function Blogs() {
             <article
               key={blog.title}
               className="mt-4 text-pretty dark:text-foreground"
+              onMouseEnter={() => router.prefetch(blog.slug)}
             >
               {/*TODO: Da li koristiti link preview za blogove?*/}
               {/*<LinkPreview*/}
