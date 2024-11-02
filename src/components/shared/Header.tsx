@@ -43,6 +43,7 @@ export default function Header({
         "flex items-center justify-between",
         fixed &&
           "fixed left-0 right-0 top-0 z-50 bg-background/60 p-4 backdrop-blur",
+        !fixed && "h-10",
         className,
       )}
     >
@@ -65,7 +66,7 @@ export default function Header({
             <Link
               key={name}
               href={href}
-              className="text-lg font-semibold no-underline"
+              className="text-lg font-semibold !text-zinc-400 no-underline hover:!text-foreground hover:underline"
             >
               <p>{name}</p>
             </Link>

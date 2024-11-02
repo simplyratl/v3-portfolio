@@ -38,7 +38,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main className="relative">
-      <Header className="mb-4" enableBack fixed />
+      <Header className="mb-4" fixed />
 
       <article>
         <div className="relative flex h-[700px] flex-col items-center justify-center gap-9">
@@ -55,17 +55,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
           <RevealText
             text={projects.title}
-            className="max-w-[750px] text-7xl"
+            className="max-w-lg px-4 text-4xl sm:text-5xl md:max-w-[750px] md:text-7xl"
             once
           />
           <RevealText
             text={projects.description}
-            className="max-w-[450px] text-lg"
+            className="text-md max-w-[450px] sm:text-lg"
             once
             delayStart={0.5}
           />
         </div>
-        <div className="mx-auto mt-10 max-w-screen-md">
+        <div className="mx-auto mt-10 max-w-screen-md px-4">
           <Mdx code={projects.body.code} />
         </div>
       </article>
