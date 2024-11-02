@@ -7,9 +7,9 @@ export default function About() {
     <div className="slide-enter-content prose text-pretty dark:text-foreground">
       <p>
         Specializing in{" "}
-        <span className="newsreader italic">user interface development</span>,{" "}
-        <span className="newsreader italic">functional software</span> and web
-        applications with a focus on details that enhance user interactions.
+        <span className="italic">user interface development</span>,{" "}
+        <span className="italic">functional software</span> and web applications
+        with a focus on details that enhance user interactions.
       </p>
 
       <p>

@@ -4,9 +4,5 @@ type Props = {
   children: React.ReactNode;
 };
 export default function ProjectLayout({ children }: Props) {
-  return (
-    <div>
-      <main className="mx-auto max-w-screen-md px-4 pt-8">{children}</main>
-    </div>
-  );
+  return <main className="pt-8">{children}</main>;
 }

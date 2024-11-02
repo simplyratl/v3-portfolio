@@ -44,6 +44,7 @@ body {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-general-sans);
 
   @apply pb-12 overflow-x-hidden;
 }
@@ -57,12 +58,13 @@ a {
     text-wrap: balance;
   }
 
-  .newsreader {
-    font-family: var(--font-newsreader);
-  }
-
   .articulat-cf{
     font-family: var(--font-articulat-cf);
+  }
+
+
+  .background-light {
+    background: radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(0, 0%, 85%, .08) 0, hsla(0, 0%, 55%, .02) 50%, hsla(0, 0%, 45%, 0) 80%);
   }
 }
 

@@ -4,7 +4,10 @@ const nextConfig = {
   compress: true,
   images: {
     domains: [
-      "api.microlink.io", // Microlink Image Preview
+      "api.microlink.io", // Microlink Image Preview,
+      "pbs.twimg.com",
+      "images.unsplash.com",
+      "assets.aceternity.com",
     ],
   },
 };

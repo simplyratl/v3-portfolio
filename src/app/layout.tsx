@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "@/components/shared/Providers";
-import { Newsreader } from "next/font/google";
+import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
+import { articulatCF } from "@/app/fonts/articulat/articulat";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,10 +17,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const newsReader = Newsreader({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-newsreader",
+  weight: ["300", "400", "500", "600", "700", "800", "200", "900"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -35,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${newsReader.variable}`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${articulatCF.variable} ${inter.variable}`}
       >
         <NextTopLoader color="hsl(var(--primary))" />
 

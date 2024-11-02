@@ -5,6 +5,8 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import { cn } from "@/utils/tailwindUtils";
 import { Callout } from "@/components/shared/markdown/Callout";
 import { MdxCard } from "@/components/shared/markdown/MdxCard";
+import CIRTPage from "@/projects/cirt/CirtPage";
+import { CashInTransitPage } from "@/projects/cash-in-transit/CashInTransitPage";
 
 const components = {
   h1: ({ ...props }) => <h1 className={cn(props.className)} {...props} />,
@@ -101,6 +103,8 @@ const components = {
   Image,
   Callout,
   Card: MdxCard,
+  CIRTPage,
+  CashInTransitPage,
 };
 
 interface MdxProps {

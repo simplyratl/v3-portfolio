@@ -1,6 +1,6 @@
 import ButtonTabs from "@/components/ui/ButtonTabs";
 import { socials } from "@/constants/socials";
-import React from "react";
+import React, { Suspense } from "react";
 import SocialButton from "@/components/shared/SocialButton";
 import Header from "@/components/shared/Header";
 
@@ -41,24 +41,12 @@ export default function Home() {
             work@nikicaraznatovic.me
           </a>
         </div>
-
-        {/* TODO: Sta raditi sa ovim? */}
-        {/*<div className="mt-4">*/}
-        {/*  <a*/}
-        {/*    href="https://showcase.nikicaraznatovic.me"*/}
-        {/*    target="_blank"*/}
-        {/*    className="group inline-flex items-center decoration-dotted"*/}
-        {/*  >*/}
-        {/*    You can also checkout showcase section portfolio{" "}*/}
-        {/*    <span className="relative left-1 transition-all group-hover:left-2">*/}
-        {/*      <ArrowRightIcon className="h-4 w-4" />*/}
-        {/*    </span>*/}
-        {/*  </a>*/}
-        {/*</div>*/}
       </div>
 
       <div className="slide-enter-content mt-10">
-        <ButtonTabs />
+        <Suspense>
+          <ButtonTabs />
+        </Suspense>
       </div>
     </div>
   );

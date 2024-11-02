@@ -1,27 +1,37 @@
 "use client";
 
 import { cn } from "@/utils/tailwindUtils";
-import React from "react";
+import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import About from "@/components/about/About";
 import Tooltip from "@/components/shared/Tooltip";
 import Stack from "@/components/home/Stack";
 import Projects from "@/components/projects/Projects";
 import Blogs from "@/components/blogs/Blogs";
+import { useSearchParams } from "next/navigation";
+import { capitalizeFirstLetter } from "@/utils/capitalize-first-letter";
 
-const buttons = ["About", "Projects", "Blog"];
+const buttons = ["about", "projects", "blog"];
 
 const selectedTabs: {
   [key: string]: React.JSX.Element;
 } = {
-  About: <About />,
-  Projects: <Projects />,
-  Blog: <Blogs />,
+  about: <About />,
+  projects: <Projects />,
+  blog: <Blogs />,
 };
 
 export default function ButtonTabs() {
   const [active, setActive] = React.useState(buttons[0]);
   const [stackActive, setStackActive] = React.useState(false);
+  const params = useSearchParams();
+
+  useEffect(() => {
+    const tab = params.get("tab");
+    if (tab && buttons.includes(tab)) {
+      setActive(tab);
+    }
+  }, []);
 
   return (
     <div className="relative">
@@ -51,7 +61,9 @@ export default function ButtonTabs() {
                   }}
                 ></motion.div>
               )}
-              <span className="relative z-10">{button}</span>
+              <span className="relative z-10 font-medium">
+                {capitalizeFirstLetter(button)}
+              </span>
             </button>
           ))}
         </div>
@@ -81,16 +93,6 @@ export default function ButtonTabs() {
             </div>
             <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-opacity duration-500 group-hover:opacity-40" />
           </button>
-
-          {/*<button*/}
-          {/*  className={cn(*/}
-          {/*    "h-full rounded-2xl border border-transparent px-3 py-1.5 text-foreground/50 transition-colors hover:text-foreground",*/}
-          {/*    stackActive &&*/}
-          {/*    "border border-muted/15 bg-muted/10 text-foreground hover:text-foreground dark:bg-muted/20 dark:text-foreground",*/}
-          {/*  )}*/}
-          {/*>*/}
-          {/*  My Stack*/}
-          {/*</button>*/}
         </Tooltip>
       </div>
 

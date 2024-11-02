@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Mdx } from "@/components/shared/markdown/MDXComponent";
 import Header from "@/components/shared/Header";
 import React from "react";
+import RevealText from "@/components/shared/RevealText";
 
 type ProjectPageProps = {
   params: {
@@ -37,11 +38,34 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main className="relative">
-      <Header className="mb-4" enableBack />
+      <Header className="mb-4" enableBack fixed />
 
-      <article className="slide-enter-content">
-        <h1 className="text-4xl font-semibold">{projects.title}</h1>
-        <div className="mt-10">
+      <article>
+        <div className="relative flex h-[700px] flex-col items-center justify-center gap-9">
+          <div className="absolute left-0 top-0 z-[-1] h-screen w-full">
+            <div className="isolate z-20 h-full contain-strict">
+              <div className="animate-fade-in">
+                <div className="background-light absolute h-[1380px] w-[560px] -translate-y-[200px] translate-x-[80px] -rotate-45 rounded-full"></div>
+              </div>
+              <div className="animate-fade-in">
+                <div className="background-light absolute h-[1000px] w-[300px] translate-x-[100px] translate-y-[50px] -rotate-45 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+
+          <RevealText
+            text={projects.title}
+            className="max-w-[750px] text-7xl"
+            once
+          />
+          <RevealText
+            text={projects.description}
+            className="max-w-[450px] text-lg"
+            once
+            delayStart={0.5}
+          />
+        </div>
+        <div className="mx-auto mt-10 max-w-screen-md">
           <Mdx code={projects.body.code} />
         </div>
       </article>
