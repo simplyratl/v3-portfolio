@@ -8,7 +8,7 @@ import Tooltip from "@/components/shared/Tooltip";
 import Stack from "@/components/home/Stack";
 import Projects from "@/components/projects/Projects";
 import Blogs from "@/components/blogs/Blogs";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { capitalizeFirstLetter } from "@/utils/capitalize-first-letter";
 
 const buttons = ["about", "projects", "blog"];
@@ -25,6 +25,7 @@ export default function ButtonTabs() {
   const [active, setActive] = React.useState(buttons[0]);
   const [stackActive, setStackActive] = React.useState(false);
   const params = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     const tab = params.get("tab");
@@ -32,6 +33,11 @@ export default function ButtonTabs() {
       setActive(tab);
     }
   }, []);
+
+  useEffect(() => {
+    const entriesLength = Array.from(params.entries()).length;
+    if (entriesLength > 0) router.push("/");
+  }, [active]);
 
   return (
     <div className="relative">
