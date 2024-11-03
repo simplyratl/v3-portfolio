@@ -84,11 +84,11 @@ a {
 .slide-enter-content > *:not(:has(.table-of-contents)) {
   --stagger: 0;
   --delay: 100ms;
-    --start: 0ms;
+  --start: 0ms;
+  --delay-offset: 0ms; /* New default delay offset */
   animation: slide-enter 1s both 1;
-  animation-delay: calc(var(--start) + var(--stagger) * var(--delay));
+  animation-delay: calc(var(--start) + var(--stagger) * var(--delay) + var(--delay-offset));
 }
-
 .slide-enter-content > *:nth-child(1) {
   --stagger: 1;
 }
@@ -148,6 +148,10 @@ a {
 }
 .slide-enter-content > *:nth-child(20) {
   --stagger: 20;
+}
+
+.slide-enter-content.slide-enter-delay-1700 > * {
+  --delay-offset: 1700ms;
 }
 
 /* width */

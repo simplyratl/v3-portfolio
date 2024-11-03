@@ -49,13 +49,17 @@ export const Projects = defineDocumentType(() => ({
     toc: {
       type: "boolean",
       required: false,
-      default: true,
+      default: false,
     },
     tag: {
       type: "string",
       required: true,
     },
     publicLink: {
+      type: "string",
+      required: false,
+    },
+    technologies: {
       type: "string",
       required: false,
     },

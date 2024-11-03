@@ -4,6 +4,8 @@ import { Mdx } from "@/components/shared/markdown/MDXComponent";
 import Header from "@/components/shared/Header";
 import React from "react";
 import RevealText from "@/components/shared/RevealText";
+import { cn } from "@/utils/tailwindUtils";
+import { Link } from "lucide-react";
 
 type ProjectPageProps = {
   params: {
@@ -53,6 +55,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
+          {projects.publicLink && (
+            <a
+              href={projects.publicLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-xl font-medium text-foreground"
+            >
+              <Link size={20} />
+              <span>View project</span>
+            </a>
+          )}
+
           <RevealText
             text={projects.title}
             className="max-w-lg px-4 text-4xl sm:text-5xl md:max-w-[750px] md:text-7xl"
@@ -64,6 +78,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             once
             delayStart={0.5}
           />
+          <ul className="slide-enter-content slide-enter-delay-1700 flex gap-4">
+            {projects?.technologies &&
+              projects.technologies.split(", ").map((tech) => (
+                <li
+                  key={tech}
+                  className={cn(
+                    "flex items-center gap-2 rounded-full border border-muted/15 bg-muted/10 px-2.5 py-1 text-sm text-foreground transition-colors dark:bg-muted/20 dark:text-foreground",
+                  )}
+                >
+                  {tech}
+                </li>
+              ))}
+          </ul>
         </div>
         <div className="mx-auto mt-10 max-w-screen-md px-4">
           <Mdx code={projects.body.code} />
