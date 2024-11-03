@@ -15,7 +15,7 @@ export const socials = [
   // },
   {
     name: "LinkedIn",
-    url: "linkedin.com/in/nikica-raznatovic",
+    url: "www.linkedin.com/in/nikica-raznatovic",
     icon: <LinkedinIcon />,
   },
 ];
