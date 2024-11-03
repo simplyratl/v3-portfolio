@@ -1,21 +1,21 @@
 import GithubIcon from "@/icons/GithubIcon";
-import TwitterIcon from "@/icons/TwitterIcon";
+// import TwitterIcon from "@/icons/TwitterIcon";
 import LinkedinIcon from "@/icons/LinkedInIcon";
 
 export const socials = [
   {
     name: "GitHub",
-    url: "#",
+    url: "https://github.com/simplyratl",
     icon: <GithubIcon />,
   },
-  {
-    name: "Twitter",
-    url: "#",
-    icon: <TwitterIcon />,
-  },
+  // {
+  //   name: "Twitter",
+  //   url: "#",
+  //   icon: <TwitterIcon />,
+  // },
   {
     name: "LinkedIn",
-    url: "#",
+    url: "linkedin.com/in/nikica-raznatovic",
     icon: <LinkedinIcon />,
   },
 ];
