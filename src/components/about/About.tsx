@@ -19,7 +19,7 @@ export default function About() {
       </p>
 
       <div>
-        Currently, working as a Lead Frontend Engineer at{" "}
+        Currently, working as a Frontend Engineer at{" "}
         <LinkPreview url="https://coreit.me/" external>
           Coreit
         </LinkPreview>

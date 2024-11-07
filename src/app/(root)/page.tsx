@@ -15,9 +15,7 @@ export default function Home() {
             <div className="flex flex-col gap-3">
               <h1 className="text-3xl font-semibold">Nikica Ražnatović</h1>
             </div>
-            <p className="text-md font-mono text-primary">
-              Lead Frontend Engineer
-            </p>
+            <p className="text-md font-mono text-primary">Frontend Engineer</p>
           </div>
 
           <ul className="flex h-7 gap-2 sm:mt-6">
