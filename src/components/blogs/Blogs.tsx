@@ -14,14 +14,18 @@ export default function Blogs() {
 
   return (
     <div className="slide-enter-content grid grid-cols-1 gap-2 space-y-8">
-      <ul>
+      <ul className="group/list">
         {blogs.map((blog) => (
-          <li key={blog.slug} onMouseEnter={() => router.prefetch(blog.slug)}>
+          <li
+            key={blog.slug}
+            onMouseEnter={() => router.prefetch(blog.slug)}
+            className="group/item transition-all"
+          >
             <Link
               href={blog.slug}
-              className="group flex w-full items-center gap-2 rounded-lg px-4 py-3 no-underline transition-colors hover:bg-muted/5"
+              className="flex w-full items-center gap-2 rounded-lg px-4 py-3 no-underline transition-all hover:bg-muted/5"
             >
-              <span className="font-semibold transition-all group-hover:underline">
+              <span className="font-semibold text-muted/80 transition-all group-hover/item:text-foreground group-hover/list:text-muted/40">
                 {blog.title}
               </span>
               <span className="hidden text-sm text-muted/50 md:block">
