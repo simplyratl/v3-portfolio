@@ -2,7 +2,7 @@
 
 import { cn } from "@/utils/tailwindUtils";
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Tooltip from "@/components/shared/Tooltip";
 import Stack from "@/components/home/Stack";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,57 +12,175 @@ type TabType = (typeof links)[number];
 
 export default function ButtonTabs() {
   const pathname = usePathname();
-  // Set initial active state based on current pathname
-  const [active, setActive] = React.useState<TabType>(() => {
-    const tab = links.find((tab) => tab.href === pathname);
-    return tab || links[0];
-  });
-  const [stackActive, setStackActive] = React.useState(false);
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
 
-  const toggleStack = React.useCallback(() => {
-    setStackActive((prev) => !prev);
+  const animationTimeoutRef = React.useRef<NodeJS.Timeout>();
+  const lastInteractionRef = React.useRef<number>(0);
+
+  const [stackActive, setStackActive] = React.useState(false);
+  const [isAnimating, setIsAnimating] = React.useState(false);
+
+  React.useEffect(() => {
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
   }, []);
 
+  const startAnimation = React.useCallback(() => {
+    setIsAnimating(true);
+    lastInteractionRef.current = Date.now();
+
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
+    }
+
+    animationTimeoutRef.current = setTimeout(() => {
+      if (Date.now() - lastInteractionRef.current >= 200) {
+        // Reduced from 400
+        setIsAnimating(false);
+      }
+    }, 250); // Reduced from 450
+  }, []);
+
+  const toggleStack = React.useCallback(() => {
+    startAnimation();
+    setStackActive((prev) => !prev);
+  }, [startAnimation]);
+
   const handleButtonClick = React.useCallback(
-    (tab: TabType) => {
-      setActive(tab);
-      router.push(`${tab.href}`);
+    async (tab: TabType) => {
+      if (tab.href === pathname || isAnimating) return;
+
+      startAnimation();
+
+      try {
+        await router.push(tab.href);
+      } catch (error) {
+        console.error("Navigation failed:", error);
+        setIsAnimating(false);
+      }
     },
-    [router],
+    [router, pathname, isAnimating, startAnimation],
+  );
+
+  const tabVariants = React.useMemo(
+    () => ({
+      initial: { opacity: 0, scale: 0.95 },
+      animate: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+          duration: shouldReduceMotion ? 0 : 0.15, // Reduced from 0.2
+          ease: "easeOut",
+        },
+      },
+      exit: {
+        opacity: 0,
+        scale: 0.95,
+        transition: {
+          duration: shouldReduceMotion ? 0 : 0.1, // Reduced from 0.15
+          ease: "easeIn",
+        },
+      },
+    }),
+    [shouldReduceMotion],
+  );
+
+  const stackVariants = React.useMemo(
+    () => ({
+      initial: { height: 0, opacity: 0 },
+      animate: {
+        height: "auto",
+        opacity: 1,
+        transition: {
+          height: {
+            duration: shouldReduceMotion ? 0 : 0.2, // Reduced from 0.3
+            ease: [0.4, 0, 0.2, 1],
+          },
+          opacity: {
+            duration: shouldReduceMotion ? 0 : 0.15, // Reduced from 0.2
+            ease: "easeOut",
+          },
+        },
+      },
+      exit: {
+        height: 0,
+        opacity: 0,
+        transition: {
+          height: {
+            duration: shouldReduceMotion ? 0 : 0.15, // Reduced from 0.25
+            ease: [0.4, 0, 1, 1],
+          },
+          opacity: {
+            duration: shouldReduceMotion ? 0 : 0.1, // Reduced from 0.15
+            ease: "easeIn",
+          },
+        },
+      },
+    }),
+    [shouldReduceMotion],
   );
 
   return (
     <div className="relative">
-      <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex gap-1">
-          {links.map((button) => (
-            <button
-              key={button.href}
-              className={cn(
-                "relative px-3 py-1.5 transition-colors",
-                active === button
-                  ? "text-background"
-                  : "text-foreground/50 hover:text-foreground",
-              )}
-              onClick={() => handleButtonClick(button)}
-            >
-              {active === button && (
-                <motion.div
-                  layoutId="animation-tab-active-button"
-                  className="absolute inset-0 rounded-2xl bg-foreground transition-colors"
-                  transition={{
-                    duration: 0.6,
-                    type: "spring",
-                    bounce: 0.3,
-                    mass: 0.5,
-                    velocity: 10,
-                  }}
-                ></motion.div>
-              )}
-              <span className="relative z-10 font-medium">{button.label}</span>
-            </button>
-          ))}
+      <motion.div
+        className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between"
+        initial={false}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }} // Reduced from 0.3
+      >
+        <div className="relative flex gap-1 p-2">
+          <div
+            className="absolute inset-0 rounded-3xl bg-background/5 backdrop-blur-sm"
+            style={{
+              boxShadow: "inset 0 1px 1px hsl(var(--foreground) / 0.3)",
+            }}
+          />
+
+          <AnimatePresence>
+            {links.map((button) => (
+              <motion.button
+                key={button.href}
+                className={cn(
+                  "relative px-3 py-1.5 transition-all duration-200", // Reduced from 300
+                  "rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+                  "touch-none select-none",
+                  button.href === pathname
+                    ? "text-background"
+                    : "text-foreground/50 hover:text-foreground",
+                  isAnimating && "pointer-events-none",
+                )}
+                onClick={() => handleButtonClick(button)}
+                disabled={isAnimating}
+                whileTap={{ scale: 0.98 }}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={tabVariants}
+              >
+                {button.href === pathname && (
+                  <motion.div
+                    layoutId="animation-tab-active-button"
+                    className="absolute inset-0 rounded-2xl bg-foreground"
+                    transition={{
+                      type: "spring",
+                      bounce: 0.15,
+                      duration: 0.3, // Reduced from 0.5
+                      mass: 0.6, // Reduced from 0.8
+                      stiffness: 200, // Increased from 150
+                      damping: 20, // Reduced from 25
+                    }}
+                  />
+                )}
+                <span className="relative z-10 whitespace-nowrap font-medium">
+                  {button.label}
+                </span>
+              </motion.button>
+            ))}
+          </AnimatePresence>
         </div>
 
         <Tooltip
@@ -71,37 +189,48 @@ export default function ButtonTabs() {
           }
           position="top"
         >
-          <button
+          <motion.button
             className={cn(
-              "group relative inline-block cursor-pointer rounded-full bg-primary/20 p-px text-xs font-semibold leading-6 no-underline shadow-2xl shadow-zinc-900",
+              "group relative inline-block cursor-pointer rounded-full p-px",
+              "bg-gradient-to-r from-primary/30 via-primary/20 to-primary/30",
+              "text-xs font-semibold leading-6 no-underline",
+              "shadow-lg shadow-primary/10",
+              isAnimating && "pointer-events-none",
             )}
             onClick={toggleStack}
+            disabled={isAnimating}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <span className="absolute inset-0 overflow-hidden rounded-full">
-              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />{" "}
+              {/* Reduced from 500 */}
             </span>
             <div
               className={cn(
-                "relative z-10 flex items-center space-x-2 rounded-full bg-background px-4 py-0.5 text-foreground ring-1 ring-white/10",
+                "relative z-10 flex items-center space-x-2 rounded-full px-4 py-0.5",
+                "ring-1 ring-white/10 transition-all duration-200", // Reduced from 300
+                "bg-background text-foreground",
                 stackActive && "bg-foreground text-background",
               )}
             >
-              <span>My stack</span>
+              <span className="relative">My stack</span>
             </div>
-            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-opacity duration-500 group-hover:opacity-40" />
-          </button>
+            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-opacity duration-300 group-hover:opacity-40" />{" "}
+            {/* Reduced from 500 */}
+          </motion.button>
         </Tooltip>
-      </div>
+      </motion.div>
 
-      <div className="mt-6 px-4" id="tab-content">
+      <div className="mt-6 overflow-hidden px-4" id="tab-content">
         <AnimatePresence>
           {stackActive && (
             <motion.div
-              initial={{ height: 0 }}
-              animate={{ height: 60 }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5, type: "spring" }}
-              className="h-full"
+              variants={stackVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="h-full will-change-[height,opacity]"
             >
               <Stack />
             </motion.div>

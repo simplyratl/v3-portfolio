@@ -27,6 +27,7 @@ const Playground = () => {
     setShouldPlayPreviews((prev) => {
       const newVal = !prev;
       sessionStorage.setItem("shouldPlayPreviews", JSON.stringify(newVal));
+      setProgress(0);
       return newVal;
     });
   }, []);

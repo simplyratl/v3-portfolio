@@ -74,7 +74,7 @@ export default function SocialButton({ social }: Props) {
 
   return (
     <Tooltip text={social.name} delayDuration={200} position="top">
-      <li
+      <div
         className="group relative flex size-8 items-center justify-center rounded-xl"
         ref={scope}
         onMouseEnter={() => setIsHovered(true)}
@@ -100,7 +100,7 @@ export default function SocialButton({ social }: Props) {
         >
           <ArrowUpRightIcon className="h-4 w-4 text-primary-foreground" />
         </motion.a>
-      </li>
+      </div>
     </Tooltip>
   );
 }
