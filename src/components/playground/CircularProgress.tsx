@@ -22,7 +22,7 @@ const CircularProgress = ({
 
   return (
     <div className="relative flex items-center justify-center">
-      <svg width={size} height={size} xmlns="http://www.w3.org/">
+      <svg width={size} height={size} className="-rotate-90">
         <circle
           cx={center}
           cy={center}

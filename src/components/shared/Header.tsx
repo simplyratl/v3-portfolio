@@ -6,21 +6,7 @@ import { cn } from "@/utils/tailwindUtils";
 import { useRouter } from "next/navigation";
 import { ArrowLeftIcon } from "@/icons/ArrowLeftIcon";
 import Link from "next/link";
-
-const links = [
-  {
-    name: "About",
-    href: "/",
-  },
-  {
-    name: "Projects",
-    href: "/?tab=projects",
-  },
-  {
-    name: "Blog",
-    href: "/?tab=blog",
-  },
-];
+import { links } from "@/constants/links";
 
 type Props = {
   className?: string;
@@ -62,13 +48,14 @@ export default function Header({
       </div>
       {fixed && (
         <div className="flex flex-1 items-center justify-center gap-12">
-          {links.map(({ name, href }) => (
+          {links.map(({ label, href }) => (
             <Link
-              key={name}
+              key={label}
               href={href}
               className="text-lg font-semibold !text-zinc-400 no-underline hover:!text-foreground hover:underline"
+              onMouseEnter={() => router.prefetch(href)}
             >
-              <p>{name}</p>
+              <p>{label}</p>
             </Link>
           ))}
         </div>

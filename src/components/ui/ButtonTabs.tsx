@@ -1,60 +1,51 @@
 "use client";
 
 import { cn } from "@/utils/tailwindUtils";
-import React, { useEffect } from "react";
+import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import About from "@/components/about/About";
 import Tooltip from "@/components/shared/Tooltip";
 import Stack from "@/components/home/Stack";
-import Projects from "@/components/projects/Projects";
-import Blogs from "@/components/blogs/Blogs";
-import { useRouter, useSearchParams } from "next/navigation";
-import { capitalizeFirstLetter } from "@/utils/capitalize-first-letter";
-import Playground from "@/components/playground/Playground";
+import { usePathname, useRouter } from "next/navigation";
+import { links } from "@/constants/links";
 
-const buttons = ["about", "projects", "blog", "playground"];
-
-const selectedTabs: {
-  [key: string]: React.JSX.Element;
-} = {
-  about: <About />,
-  projects: <Projects />,
-  blog: <Blogs />,
-  playground: <Playground />,
-};
+type TabType = (typeof links)[number];
 
 export default function ButtonTabs() {
-  const [active, setActive] = React.useState(buttons[0]);
+  const pathname = usePathname();
+  // Set initial active state based on current pathname
+  const [active, setActive] = React.useState<TabType>(() => {
+    const tab = links.find((tab) => tab.href === pathname);
+    return tab || links[0];
+  });
   const [stackActive, setStackActive] = React.useState(false);
-  const params = useSearchParams();
   const router = useRouter();
 
-  useEffect(() => {
-    const tab = params.get("tab");
-    if (tab && buttons.includes(tab)) {
-      setActive(tab);
-    }
+  const toggleStack = React.useCallback(() => {
+    setStackActive((prev) => !prev);
   }, []);
 
-  useEffect(() => {
-    const entriesLength = Array.from(params.entries()).length;
-    if (entriesLength > 0) router.push("/");
-  }, [active]);
+  const handleButtonClick = React.useCallback(
+    (tab: TabType) => {
+      setActive(tab);
+      router.push(`${tab.href}`);
+    },
+    [router],
+  );
 
   return (
     <div className="relative">
       <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex gap-1">
-          {buttons.map((button) => (
+          {links.map((button) => (
             <button
-              key={button}
+              key={button.href}
               className={cn(
                 "relative px-3 py-1.5 transition-colors",
                 active === button
                   ? "text-background"
                   : "text-foreground/50 hover:text-foreground",
               )}
-              onClick={() => setActive(button)}
+              onClick={() => handleButtonClick(button)}
             >
               {active === button && (
                 <motion.div
@@ -69,9 +60,7 @@ export default function ButtonTabs() {
                   }}
                 ></motion.div>
               )}
-              <span className="relative z-10 font-medium">
-                {capitalizeFirstLetter(button)}
-              </span>
+              <span className="relative z-10 font-medium">{button.label}</span>
             </button>
           ))}
         </div>
@@ -86,7 +75,7 @@ export default function ButtonTabs() {
             className={cn(
               "group relative inline-block cursor-pointer rounded-full bg-primary/20 p-px text-xs font-semibold leading-6 no-underline shadow-2xl shadow-zinc-900",
             )}
-            onClick={() => setStackActive(!stackActive)}
+            onClick={toggleStack}
           >
             <span className="absolute inset-0 overflow-hidden rounded-full">
               <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -118,8 +107,6 @@ export default function ButtonTabs() {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {selectedTabs[active]}
       </div>
     </div>
   );

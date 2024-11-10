@@ -9,19 +9,22 @@ import Tooltip from "@/components/shared/Tooltip";
 const ANIMATION_DURATION = 5000;
 
 const Playground = () => {
-  // Move this outside of component to avoid re-reading on every render
-  const [shouldPlayPreviews, setShouldPlayPreviews] = useState(() => {
-    if (typeof window === "undefined") return true;
-    const savedValue = sessionStorage.getItem("shouldPlayPreviews");
-    return savedValue ? JSON.parse(savedValue) : true;
-  });
-
+  // Initialize with a default value
+  const [shouldPlayPreviews, setShouldPlayPreviews] = useState(true);
   const [progress, setProgress] = useState(0);
   const animationRef = useRef<number>();
   const startTimeRef = useRef<number>();
 
+  // Move sessionStorage check to useEffect
+  useEffect(() => {
+    const savedValue = sessionStorage.getItem("shouldPlayPreviews");
+    if (savedValue !== null) {
+      setShouldPlayPreviews(JSON.parse(savedValue));
+    }
+  }, []);
+
   const togglePaused = useCallback(() => {
-    setShouldPlayPreviews((prev: string) => {
+    setShouldPlayPreviews((prev) => {
       const newVal = !prev;
       sessionStorage.setItem("shouldPlayPreviews", JSON.stringify(newVal));
       return newVal;
