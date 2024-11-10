@@ -1,48 +1,54 @@
-import PlaygroundCard from "@/components/playground/PlaygroundCard";
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
 import { playground } from "@/constants/playground";
-import { useEffect, useRef, useState } from "react";
+import PlaygroundCard from "@/components/playground/PlaygroundCard";
 import CircularProgress from "@/components/playground/CircularProgress";
 import Tooltip from "@/components/shared/Tooltip";
 
-const Playground = () => {
-  const savedValue = sessionStorage.getItem("shouldPlayPreviews");
+const ANIMATION_DURATION = 5000;
 
-  const [shouldPlayPreviews, setShouldPlayPreviews] = useState<boolean>(
-    savedValue ? JSON.parse(savedValue) : true,
-  );
+const Playground = () => {
+  // Move this outside of component to avoid re-reading on every render
+  const [shouldPlayPreviews, setShouldPlayPreviews] = useState(() => {
+    if (typeof window === "undefined") return true;
+    const savedValue = sessionStorage.getItem("shouldPlayPreviews");
+    return savedValue ? JSON.parse(savedValue) : true;
+  });
 
   const [progress, setProgress] = useState(0);
   const animationRef = useRef<number>();
   const startTimeRef = useRef<number>();
 
-  const ANIMATION_DURATION = 5000; // 6 seconds in milliseconds
+  const togglePaused = useCallback(() => {
+    setShouldPlayPreviews((prev: string) => {
+      const newVal = !prev;
+      sessionStorage.setItem("shouldPlayPreviews", JSON.stringify(newVal));
+      return newVal;
+    });
+  }, []);
 
-  const togglePaused = () => {
-    const newVal = !shouldPlayPreviews;
-    setShouldPlayPreviews(newVal);
+  const animate = useCallback(
+    (timestamp: number) => {
+      if (!startTimeRef.current) {
+        startTimeRef.current = timestamp;
+      }
 
-    sessionStorage.setItem("shouldPlayPreviews", JSON.stringify(newVal));
-  };
+      const elapsed = timestamp - startTimeRef.current;
+      const newProgress = Math.min(elapsed / ANIMATION_DURATION, 1);
 
-  const animate = (timestamp: number) => {
-    if (!startTimeRef.current) {
-      startTimeRef.current = timestamp;
-    }
+      setProgress(newProgress);
 
-    const elapsed = timestamp - startTimeRef.current;
-    const newProgress = Math.min(elapsed / ANIMATION_DURATION, 1);
-
-    setProgress(newProgress);
-
-    if (newProgress < 1 && shouldPlayPreviews) {
-      animationRef.current = requestAnimationFrame(animate);
-    } else if (newProgress >= 1) {
-      //   play animation again
-      setProgress(0);
-      startTimeRef.current = undefined;
-      animationRef.current = requestAnimationFrame(animate);
-    }
-  };
+      if (newProgress < 1 && shouldPlayPreviews) {
+        animationRef.current = requestAnimationFrame(animate);
+      } else if (newProgress >= 1) {
+        setProgress(0);
+        startTimeRef.current = undefined;
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    },
+    [shouldPlayPreviews],
+  );
 
   useEffect(() => {
     if (shouldPlayPreviews) {
@@ -59,7 +65,7 @@ const Playground = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [shouldPlayPreviews]);
+  }, [shouldPlayPreviews, animate]);
 
   return (
     <div className="slide-enter-content relative">
@@ -77,11 +83,11 @@ const Playground = () => {
           </div>
         </Tooltip>
       </div>
-      <div className="grid sm:grid-cols-2">
-        {playground.map((playground, index) => (
+      <div className="grid gap-4 sm:grid-cols-2">
+        {playground.map((item, index) => (
           <PlaygroundCard
-            key={playground.id}
-            playground={playground}
+            key={item.id}
+            playground={item}
             shouldPlayPreview={shouldPlayPreviews}
             index={index}
           />
