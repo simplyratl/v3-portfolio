@@ -8,6 +8,7 @@ const nextConfig = {
       "pbs.twimg.com",
       "images.unsplash.com",
       "assets.aceternity.com",
+      "nikicaraznatovic-portfolio.s3.eu-central-1.amazonaws.com",
     ],
   },
 };

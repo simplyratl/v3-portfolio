@@ -10,8 +10,9 @@ import Projects from "@/components/projects/Projects";
 import Blogs from "@/components/blogs/Blogs";
 import { useRouter, useSearchParams } from "next/navigation";
 import { capitalizeFirstLetter } from "@/utils/capitalize-first-letter";
+import Playground from "@/components/playground/Playground";
 
-const buttons = ["about", "projects", "blog"];
+const buttons = ["about", "projects", "blog", "playground"];
 
 const selectedTabs: {
   [key: string]: React.JSX.Element;
@@ -19,6 +20,7 @@ const selectedTabs: {
   about: <About />,
   projects: <Projects />,
   blog: <Blogs />,
+  playground: <Playground />,
 };
 
 export default function ButtonTabs() {

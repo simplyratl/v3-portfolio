@@ -10,7 +10,7 @@ export default function Home() {
       <Header className="mb-4" transparentSwitch />
 
       <div>
-        <div className="flex w-full flex-col justify-between gap-4 pb-10 sm:flex-row">
+        <div className="flex w-full flex-col justify-between gap-4 sm:flex-row sm:pb-10">
           <div>
             <div className="flex flex-col gap-3">
               <h1 className="text-3xl font-semibold">Nikica Ražnatović</h1>
