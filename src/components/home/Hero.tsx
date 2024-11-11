@@ -108,15 +108,10 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
                 className="mt-8 flex flex-wrap items-center justify-between gap-4 sm:mt-4"
                 variants={itemVariants}
               >
-                <div
-                  className="inline-flex min-w-40 items-center rounded-full px-4 py-1.5 text-sm"
-                  style={{
-                    backgroundColor: "rgba(134, 239, 172, 0.5)",
-                  }}
-                >
+                <div className="inline-flex min-w-40 items-center rounded-full bg-green-200 px-4 py-1.5 text-sm dark:bg-green-900">
                   <span className="relative flex size-2">
-                    <span className="absolute inline-flex h-full w-full animate-[ping_2s_ease-in-out_infinite] rounded-full bg-green-800 opacity-75 dark:bg-green-300"></span>
-                    <span className="relative inline-flex size-2 rounded-full bg-green-600"></span>
+                    <span className="absolute inline-flex h-full w-full animate-[ping_2s_ease-in-out_infinite] rounded-full bg-green-800 dark:bg-green-400"></span>
+                    <span className="relative inline-flex size-2 rounded-full bg-green-600 dark:bg-green-400"></span>
                   </span>
                   <span className="ml-2.5">Available for freelance work</span>
                 </div>

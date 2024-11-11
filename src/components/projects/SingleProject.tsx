@@ -122,7 +122,7 @@ export default function SingleProject({ projects }: ProjectPage) {
                 href={projects.publicLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center gap-2 rounded-full border border-primary/20 bg-background/50 px-6 py-2 text-lg font-medium backdrop-blur-sm"
+                className="group relative flex items-center gap-2 rounded-full border border-primary/20 bg-background/50 px-6 py-2 text-lg font-medium !no-underline backdrop-blur-sm"
                 whileHover={{ scale: 1.05 }}
                 transition={spring}
               >
