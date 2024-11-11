@@ -5,7 +5,8 @@ import React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Tooltip from "@/components/shared/Tooltip";
 import Stack from "@/components/home/Stack";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { links } from "@/constants/links";
 
 type TabType = (typeof links)[number];
