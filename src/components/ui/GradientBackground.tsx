@@ -191,7 +191,6 @@ const GradientBackground: React.FC = () => {
 
     const render = (now: number): void => {
       now *= 0.001; // Convert to seconds
-      then = now;
 
       if (!gl || !programInfoRef.current) return;
 
