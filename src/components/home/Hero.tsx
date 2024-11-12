@@ -5,32 +5,10 @@ import ButtonTabs from "@/components/ui/ButtonTabs";
 import { socials } from "@/constants/socials";
 import SocialButton from "@/components/shared/SocialButton";
 import Header from "@/components/shared/Header";
+import GradientBackground from "@/components/ui/GradientBackground";
 
 const TopFadeBackground = () => (
   <div className="pointer-events-none absolute inset-x-0 top-0 z-[-1] h-40 bg-gradient-to-b from-muted/10 to-background" />
-);
-
-const BackgroundGradients = () => (
-  <div className="relative mx-auto max-w-[750px]">
-    <div
-      className="absolute -left-[40%] top-0 h-[1000px] w-[1000px] rounded-full bg-gradient-to-br from-purple-500/5 to-transparent will-change-transform dark:from-purple-500/[0.03]"
-      style={{
-        transform: "translate3d(0,0,0)",
-        backfaceVisibility: "hidden",
-        WebkitBackfaceVisibility: "hidden",
-        filter: "blur(48px)",
-      }}
-    />
-    <div
-      className="absolute -right-[40%] top-40 h-[1000px] w-[1000px] rounded-full bg-gradient-to-br from-blue-500/5 to-transparent will-change-transform dark:from-blue-500/[0.03]"
-      style={{
-        transform: "translate3d(0,0,0)",
-        backfaceVisibility: "hidden",
-        WebkitBackfaceVisibility: "hidden",
-        filter: "blur(48px)",
-      }}
-    />
-  </div>
 );
 
 const ModernLayout = ({ children }: { children: React.ReactNode }) => {
@@ -62,7 +40,9 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen overflow-hidden">
         <TopFadeBackground />
-        <BackgroundGradients />
+        <div className="absolute inset-0 z-[-1] opacity-[0.03]">
+          <GradientBackground />
+        </div>
 
         <main className="mx-auto max-w-screen-md px-4 py-8">
           <motion.div
