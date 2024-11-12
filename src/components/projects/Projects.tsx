@@ -129,6 +129,7 @@ const ProjectList = () => {
                       <Link
                         href={project.slug}
                         className="group flex items-center gap-2 whitespace-nowrap rounded-full border border-zinc-400 bg-background px-4 py-2 text-sm !no-underline transition-colors hover:bg-muted/10 hover:text-background"
+                        onMouseEnter={() => router.prefetch(project.slug)}
                       >
                         View Project
                         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
