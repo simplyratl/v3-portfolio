@@ -40,9 +40,14 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen overflow-hidden">
         <TopFadeBackground />
-        <div className="absolute inset-0 z-[-1] opacity-[0.03]">
+        <motion.div
+          className="absolute inset-0 z-[-1]"
+          initial={{ opacity: 0.0 }}
+          animate={{ opacity: 0.03 }}
+          transition={{ duration: 2 }}
+        >
           <GradientBackground />
-        </div>
+        </motion.div>
 
         <main className="mx-auto max-w-screen-md px-4 py-8">
           <motion.div
