@@ -156,6 +156,7 @@ export default function ButtonTabs() {
                 )}
                 onClick={() => handleButtonClick(button)}
                 disabled={isAnimating}
+                onMouseEnter={() => router.prefetch(button.href)}
                 whileTap={{ scale: 0.98 }}
                 initial="initial"
                 animate="animate"
