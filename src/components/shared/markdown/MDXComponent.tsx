@@ -3,11 +3,8 @@ import Image from "next/image";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
 import { cn } from "@/utils/tailwindUtils";
-import { Callout } from "@/components/shared/markdown/Callout";
 import { MdxCard } from "@/components/shared/markdown/MdxCard";
-import { CashInTransitFeatures } from "@/projects/cash-in-transit/CashInTrainsitFeatures";
-import { CIRTFeatures } from "@/projects/cirt/CIRTFeatures";
-import { PropertySystemFeatures } from "@/projects/property-system/PropertySystemFeatures";
+import MarkdownVideo from "@/components/shared/markdown/MarkdownVideo";
 
 const components = {
   h1: ({ ...props }) => <h1 className={cn(props.className)} {...props} />,
@@ -102,11 +99,8 @@ const components = {
     />
   ),
   Image,
-  Callout,
   Card: MdxCard,
-  CIRTFeatures,
-  CashInTransitFeatures,
-  PropertySystemFeatures,
+  MarkdownVideo,
 };
 
 interface MdxProps {

@@ -81,10 +81,7 @@ function getCSSColorValue(propertyName: string): [number, number, number] {
       return [0, 0, 0];
     }
 
-    console.log(`Color value for ${propertyName}:`, color); // Debug log
-    const rgb = hexToRGB(color);
-    console.log(`Converted RGB for ${propertyName}:`, rgb); // Debug log
-    return rgb;
+    return hexToRGB(color);
   } catch (error) {
     console.error(`Error getting color for ${propertyName}:`, error);
     return [0, 0, 0];

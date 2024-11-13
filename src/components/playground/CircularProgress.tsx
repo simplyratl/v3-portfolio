@@ -1,4 +1,5 @@
 import { Pause, Play } from "lucide-react";
+import { cn } from "@/utils/tailwindUtils";
 
 type Props = {
   progress: number;
@@ -6,6 +7,7 @@ type Props = {
   width?: number;
   isPaused: boolean;
   togglePaused: () => void;
+  background?: boolean;
 };
 
 const CircularProgress = ({
@@ -13,6 +15,7 @@ const CircularProgress = ({
   size = 40,
   width = 3,
   isPaused,
+  background = false,
   togglePaused,
 }: Props) => {
   const center = size / 2;
@@ -21,7 +24,12 @@ const CircularProgress = ({
   const dashOffset = dashArray * (1 - progress);
 
   return (
-    <div className="relative flex items-center justify-center">
+    <div
+      className={cn(
+        "relative flex items-center justify-center p-1",
+        background && "rounded-full bg-background/50 backdrop-blur",
+      )}
+    >
       <svg width={size} height={size} className="-rotate-90">
         <circle
           cx={center}

@@ -41,7 +41,7 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="min-h-screen overflow-hidden">
         <TopFadeBackground />
         <motion.div
-          className="absolute inset-0 z-[-1]"
+          className="fixed inset-0 z-[-1]"
           initial={{ opacity: 0.0 }}
           animate={{ opacity: 0.03 }}
           transition={{ duration: 2 }}
