@@ -75,30 +75,40 @@ const ProjectList = () => {
                     </p>
 
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                      <span className="w-fit rounded-full bg-primary/10 px-4 py-1 text-sm text-primary">
-                        {project.tag}
-                      </span>
-
-                      <div className="flex items-center gap-4">
-                        <Link
-                          href={project.slug}
-                          className="group flex items-center gap-2 whitespace-nowrap rounded-full border border-zinc-400 bg-background px-4 py-2 text-sm !no-underline transition-colors hover:bg-muted/10 hover:text-background"
-                        >
-                          View Project
-                          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-                        </Link>
-
-                        {project.publicLink && (
-                          <Link
-                            href={project.publicLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="w-fit rounded-full bg-primary/10 px-4 py-1 text-sm text-primary">
+                          {project.tag}
+                        </span>
+                        {project.technologies?.split(", ").map((tech) => (
+                          <span
+                            key={tech}
+                            className="w-fit rounded-full bg-primary/10 px-4 py-1 text-sm text-primary"
                           >
-                            Visit Live Site
-                          </Link>
-                        )}
+                            {tech}
+                          </span>
+                        ))}
                       </div>
+                    </div>
+                    <div className="!mt-8 flex items-center justify-between gap-4">
+                      {project.publicLink ? (
+                        <Link
+                          href={project.publicLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+                        >
+                          Visit Live Site
+                        </Link>
+                      ) : (
+                        <div></div>
+                      )}
+                      <Link
+                        href={project.slug}
+                        className="group flex items-center gap-2 whitespace-nowrap rounded-full border border-zinc-400 bg-background px-4 py-2 text-sm !no-underline transition-colors hover:bg-muted/10 hover:text-background"
+                      >
+                        View Project
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                      </Link>
                     </div>
                   </div>
                 )}
@@ -126,22 +136,27 @@ const ProjectList = () => {
                       <p className="max-w-lg text-pretty text-foreground">
                         {project.description}
                       </p>
-                      <Link
-                        href={project.slug}
-                        className="group flex items-center gap-2 whitespace-nowrap rounded-full border border-zinc-400 bg-background px-4 py-2 text-sm !no-underline transition-colors hover:bg-muted/10 hover:text-background"
-                        onMouseEnter={() => router.prefetch(project.slug)}
-                      >
-                        View Project
-                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-                      </Link>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <span className="rounded-full bg-primary/10 px-4 py-1 text-sm text-primary">
-                        {project.tag}
-                      </span>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded-full bg-primary px-4 py-1 text-sm text-primary-foreground">
+                          {project.tag}
+                        </span>
 
-                      {project.publicLink && (
+                        {project.technologies?.split(", ").map((tech) => (
+                          <span
+                            key={tech}
+                            className="w-fit rounded-full bg-primary/10 px-4 py-1 text-sm text-primary"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mt-4 flex items-center justify-between">
+                      {project.publicLink ? (
                         <Link
                           href={project.publicLink}
                           target="_blank"
@@ -150,7 +165,18 @@ const ProjectList = () => {
                         >
                           Visit Live Site
                         </Link>
+                      ) : (
+                        <div></div>
                       )}
+
+                      <Link
+                        href={project.slug}
+                        className="group flex items-center gap-2 whitespace-nowrap rounded-full border border-zinc-400 bg-background px-4 py-2 text-sm !no-underline transition-colors hover:bg-muted/10 hover:text-background"
+                        onMouseEnter={() => router.prefetch(project.slug)}
+                      >
+                        View Project
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                      </Link>
                     </div>
                   </div>
                 )}

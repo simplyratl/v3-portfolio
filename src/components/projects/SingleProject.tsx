@@ -108,7 +108,7 @@ export default function SingleProject({ projects }: ProjectPage) {
 
       <article className="relative z-10">
         <motion.div
-          className="relative flex min-h-[80vh] flex-col items-center justify-center gap-9 px-4"
+          className="relative flex h-[540px] flex-col items-center justify-center gap-9 px-4 md:h-[768px]"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ...spring }}
