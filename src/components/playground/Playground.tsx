@@ -9,7 +9,10 @@ import { useVideoProgress } from "@/hooks/useVideoProgress";
 const Playground = () => {
   const { progress, isPlaying, togglePlaying } = useVideoProgress({
     duration: 5000,
-    initialPlayState: localStorage.getItem("shouldPlayPreviews") === "true",
+    initialPlayState:
+      typeof window !== "undefined"
+        ? window.localStorage.getItem("shouldPlayPreviews") === "true"
+        : true,
   });
 
   const togglePaused = () => {
