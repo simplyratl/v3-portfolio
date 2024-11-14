@@ -56,7 +56,7 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
               <div className="flex w-full flex-col justify-between gap-4 sm:flex-row sm:pb-10">
                 <motion.div variants={itemVariants}>
                   <div className="flex flex-col gap-3">
-                    <h1 className="text-3xl font-semibold tracking-tight">
+                    <h1 className="articulat-cf text-3xl font-semibold tracking-tight">
                       Nikica Ražnatović
                     </h1>
                   </div>

@@ -165,6 +165,10 @@ a {
   --delay-offset: 1700ms;
 }
 
+.slide-enter-content.slide-enter-delay-1000 > * {
+  --delay-offset: 1000ms;
+}
+
 /* width */
 ::-webkit-scrollbar {
   @apply w-2;
