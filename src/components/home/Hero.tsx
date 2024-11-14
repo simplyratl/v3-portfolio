@@ -5,6 +5,7 @@ import ButtonTabs from "@/components/ui/ButtonTabs";
 import { socials } from "@/constants/socials";
 import SocialButton from "@/components/shared/SocialButton";
 import Header from "@/components/shared/Header";
+import { MapPin } from "lucide-react";
 
 const TopFadeBackground = () => (
   <div className="pointer-events-none absolute inset-x-0 top-0 z-[-1] h-40 bg-gradient-to-b from-muted/10 to-background" />
@@ -51,7 +52,7 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
               <Header className="mb-4" transparentSwitch />
             </motion.div>
 
-            <div>
+            <div className="max-[640px]:[&_*]:text-center">
               <div className="flex w-full flex-col justify-between gap-4 sm:flex-row sm:pb-10">
                 <motion.div variants={itemVariants}>
                   <div className="flex flex-col gap-3">
@@ -64,24 +65,33 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
                   </p>
                 </motion.div>
 
-                <motion.ul
-                  className="flex h-7 gap-2.5 sm:mt-6"
+                <motion.div
                   variants={itemVariants}
+                  className="flex flex-col-reverse items-center gap-4 sm:flex-col sm:items-end"
                 >
-                  {socials.map((social) => (
-                    <motion.li
-                      key={social.name}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
-                    >
-                      <SocialButton social={social} />
-                    </motion.li>
-                  ))}
-                </motion.ul>
+                  <ul className="flex h-7 gap-2.5">
+                    {socials.map((social) => (
+                      <motion.li
+                        key={social.name}
+                        whileHover={{ scale: 1.01 }}
+                        whileTap={{ scale: 0.99 }}
+                      >
+                        <SocialButton social={social} />
+                      </motion.li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-2 flex items-center gap-2 text-sm">
+                    <MapPin className="size-5" />
+                    <span className="font-mono text-primary">
+                      Podgorica, Montenegro
+                    </span>
+                  </div>
+                </motion.div>
               </div>
 
               <motion.div
-                className="mt-8 flex flex-wrap items-center justify-between gap-4 sm:mt-4"
+                className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:mt-4 sm:justify-between"
                 variants={itemVariants}
               >
                 <div className="inline-flex min-w-40 items-center rounded-full bg-green-200 px-4 py-1.5 text-sm dark:bg-green-900">

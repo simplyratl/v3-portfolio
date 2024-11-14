@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/utils/tailwindUtils";
-import React from "react";
+import React, { useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Tooltip from "@/components/shared/Tooltip";
 import Stack from "@/components/home/Stack";
@@ -20,6 +20,7 @@ export default function ButtonTabs() {
   const lastInteractionRef = React.useRef<number>(0);
 
   const [stackActive, setStackActive] = React.useState(false);
+  const [stackVisible, setStackVisible] = React.useState(false);
   const [isAnimating, setIsAnimating] = React.useState(false);
 
   React.useEffect(() => {
@@ -94,7 +95,7 @@ export default function ButtonTabs() {
     () => ({
       initial: { height: 0, opacity: 0 },
       animate: {
-        height: "auto",
+        height: 50,
         opacity: 1,
         transition: {
           height: {
@@ -124,6 +125,18 @@ export default function ButtonTabs() {
     }),
     [shouldReduceMotion],
   );
+
+  useEffect(() => {
+    if (pathname === "/") {
+      setStackVisible(true);
+    } else {
+      setStackVisible(false);
+
+      if (stackActive) {
+        setStackActive(false);
+      }
+    }
+  }, [pathname]);
 
   return (
     <div className="relative">
@@ -185,46 +198,57 @@ export default function ButtonTabs() {
           </AnimatePresence>
         </div>
 
-        <Tooltip
-          text={
-            stackActive ? "Hide tech stack" : "Take a look at my tech stack"
-          }
-          position="top"
-        >
-          <motion.button
-            className={cn(
-              "group relative inline-block cursor-pointer rounded-full p-px",
-              "bg-gradient-to-r from-primary/30 via-primary/20 to-primary/30",
-              "text-xs font-semibold leading-6 no-underline",
-              "shadow-lg shadow-primary/10",
-              isAnimating && "pointer-events-none",
-            )}
-            onClick={toggleStack}
-            disabled={isAnimating}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span className="absolute inset-0 overflow-hidden rounded-full">
-              <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />{" "}
-              {/* Reduced from 500 */}
-            </span>
-            <div
-              className={cn(
-                "relative z-10 flex items-center space-x-2 rounded-full px-4 py-0.5",
-                "ring-1 ring-white/10 transition-all duration-200", // Reduced from 300
-                "bg-background text-foreground",
-                stackActive && "bg-foreground text-background",
-              )}
+        <AnimatePresence>
+          {stackVisible && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.3, ease: "circInOut" }}
             >
-              <span className="relative">My stack</span>
-            </div>
-            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-opacity duration-300 group-hover:opacity-40" />{" "}
-            {/* Reduced from 500 */}
-          </motion.button>
-        </Tooltip>
+              <Tooltip
+                text={
+                  stackActive
+                    ? "Hide tech stack"
+                    : "Take a look at my tech stack"
+                }
+                position="top"
+              >
+                <motion.button
+                  className={cn(
+                    "group relative inline-block cursor-pointer rounded-full p-px",
+                    "bg-gradient-to-r from-primary/30 via-primary/20 to-primary/30",
+                    "text-xs font-semibold leading-6 no-underline",
+                    "shadow-lg shadow-primary/10",
+                    isAnimating && "pointer-events-none",
+                  )}
+                  onClick={toggleStack}
+                  disabled={isAnimating}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="absolute inset-0 overflow-hidden rounded-full">
+                    <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />{" "}
+                  </span>
+                  <div
+                    className={cn(
+                      "relative z-10 flex items-center space-x-2 rounded-full px-4 py-0.5",
+                      "ring-1 ring-white/10 transition-all duration-200",
+                      "bg-background text-foreground",
+                      stackActive && "bg-foreground text-background",
+                    )}
+                  >
+                    <span className="relative">My stack</span>
+                  </div>
+                  <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-primary/0 via-primary to-primary/0 transition-opacity duration-300 group-hover:opacity-40" />{" "}
+                </motion.button>
+              </Tooltip>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
-      <div className="mt-6 overflow-hidden px-4" id="tab-content">
+      <div className="mt-6 overflow-hidden" id="tab-content">
         <AnimatePresence>
           {stackActive && (
             <motion.div
