@@ -46,6 +46,9 @@ export const Projects = defineDocumentType(() => ({
     description: {
       type: "string",
     },
+    shortDescription: {
+      type: "string",
+    },
     toc: {
       type: "boolean",
       required: false,

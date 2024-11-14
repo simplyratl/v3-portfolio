@@ -8,6 +8,7 @@ import MarkdownVideo from "@/components/shared/markdown/MarkdownVideo";
 import { CashInTransitFeatures } from "@/projects/cash-in-transit/CashInTrainsitFeatures";
 import { CIRTFeatures } from "@/projects/cirt/CIRTFeatures";
 import { PropertySystemFeatures } from "@/projects/property-system/PropertySystemFeatures";
+import LinkExternal from "@/components/shared/LinkExternal";
 
 const components = {
   h1: ({ ...props }) => <h1 className={cn(props.className)} {...props} />,
@@ -107,6 +108,7 @@ const components = {
   CIRTFeatures,
   CashInTransitFeatures,
   PropertySystemFeatures,
+  LinkExternal,
 };
 
 interface MdxProps {
