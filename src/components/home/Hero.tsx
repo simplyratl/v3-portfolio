@@ -67,7 +67,7 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
 
                 <motion.div
                   variants={itemVariants}
-                  className="flex flex-col-reverse items-center gap-4 sm:flex-col sm:items-end"
+                  className="flex flex-col-reverse items-center gap-2.5 sm:flex-col sm:items-end"
                 >
                   <ul className="flex h-7 gap-2.5">
                     {socials.map((social) => (
@@ -81,9 +81,9 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
                     ))}
                   </ul>
 
-                  <div className="mt-2 flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2">
                     <MapPin className="size-5" />
-                    <span className="font-mono text-primary">
+                    <span className="font-mono text-[13px] text-primary">
                       Podgorica, Montenegro
                     </span>
                   </div>

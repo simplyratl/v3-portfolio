@@ -8,7 +8,7 @@ const ProjectList = () => {
   const projects = allProjects;
 
   return (
-    <div className="">
+    <div>
       <motion.div
         className="mb-10 max-w-lg"
         initial={{ opacity: 0 }}
