@@ -5,7 +5,6 @@ import ButtonTabs from "@/components/ui/ButtonTabs";
 import { socials } from "@/constants/socials";
 import SocialButton from "@/components/shared/SocialButton";
 import Header from "@/components/shared/Header";
-import GradientBackground from "@/components/ui/GradientBackground";
 
 const TopFadeBackground = () => (
   <div className="pointer-events-none absolute inset-x-0 top-0 z-[-1] h-40 bg-gradient-to-b from-muted/10 to-background" />
@@ -40,14 +39,6 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
     <LazyMotion features={domAnimation}>
       <div className="min-h-screen overflow-hidden">
         <TopFadeBackground />
-        <motion.div
-          className="fixed inset-0 z-[-1]"
-          initial={{ opacity: 0.0 }}
-          animate={{ opacity: 0.03 }}
-          transition={{ duration: 2 }}
-        >
-          <GradientBackground />
-        </motion.div>
 
         <main className="mx-auto max-w-screen-md px-4 py-8">
           <motion.div
