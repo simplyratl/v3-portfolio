@@ -25,7 +25,7 @@ export default function Blogs() {
               href={blog.slug}
               className="flex w-full items-center gap-2 rounded-lg px-4 py-3 no-underline transition-all hover:bg-muted/5"
             >
-              <span className="font-semibold text-muted/80 transition-all group-hover/item:!text-foreground group-hover/list:text-muted/40">
+              <span className="articulat-cf font-semibold text-muted/80 transition-all group-hover/item:!text-foreground group-hover/list:text-muted/40">
                 {blog.title}
               </span>
               <span className="hidden text-sm text-muted/50 md:block">

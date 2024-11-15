@@ -40,11 +40,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <Header className="mb-4" enableBack />
 
       <article className="slide-enter-content">
-        <h1 className="text-4xl font-semibold">{blog.title}</h1>
-        <p className="mt-3 text-muted/50">
+        <h1 className="articulat-cf text-4xl font-semibold">{blog.title}</h1>
+        <p className="articulat-cf mt-3 font-medium text-muted/50">
           {format(blog.date, "MMMM dd yyyy")}
         </p>
-        <div className="mt-10">
+        <div className="inter mt-10">
           <Mdx code={blog.body.code} />
         </div>
       </article>

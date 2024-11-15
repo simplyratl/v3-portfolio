@@ -11,12 +11,24 @@ import { PropertySystemFeatures } from "@/projects/property-system/PropertySyste
 import LinkExternal from "@/components/shared/LinkExternal";
 
 const components = {
-  h1: ({ ...props }) => <h1 className={cn(props.className)} {...props} />,
-  h2: ({ ...props }) => <h2 className={cn(props.className)} {...props} />,
-  h3: ({ ...props }) => <h3 className={cn(props.className)} {...props} />,
-  h4: ({ ...props }) => <h4 className={cn(props.className)} {...props} />,
-  h5: ({ ...props }) => <h5 className={cn(props.className)} {...props} />,
-  h6: ({ ...props }) => <h6 className={cn(props.className)} {...props} />,
+  h1: ({ ...props }) => (
+    <h1 className={cn("articulat-cf", props.className)} {...props} />
+  ),
+  h2: ({ ...props }) => (
+    <h2 className={cn("articulat-cf", props.className)} {...props} />
+  ),
+  h3: ({ ...props }) => (
+    <h3 className={cn("articulat-cf", props.className)} {...props} />
+  ),
+  h4: ({ ...props }) => (
+    <h4 className={cn("articulat-cf", props.className)} {...props} />
+  ),
+  h5: ({ ...props }) => (
+    <h5 className={cn("articulat-cf", props.className)} {...props} />
+  ),
+  h6: ({ ...props }) => (
+    <h6 className={cn("articulat-cf", props.className)} {...props} />
+  ),
   a: ({ ...props }) => (
     <a
       className={cn(

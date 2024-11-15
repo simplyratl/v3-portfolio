@@ -71,8 +71,8 @@ const PlaygroundCard = memo(
             )}
           </div>
 
-          <div className="p-4">
-            <h2 className="text-lg font-medium tracking-tight text-foreground underline decoration-muted/40 transition-colors duration-300 group-hover:text-primary group-hover:decoration-foreground">
+          <div className="articulat-cf p-4">
+            <h2 className="text-lg font-semibold tracking-tight text-foreground underline decoration-muted/40 transition-colors duration-300 group-hover:text-primary group-hover:decoration-foreground">
               {playground.title}
             </h2>
             <p className="mt-1 text-sm text-muted/60">
