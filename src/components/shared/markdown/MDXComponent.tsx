@@ -9,6 +9,7 @@ import { CashInTransitFeatures } from "@/projects/cash-in-transit/CashInTrainsit
 import { CIRTFeatures } from "@/projects/cirt/CIRTFeatures";
 import { PropertySystemFeatures } from "@/projects/property-system/PropertySystemFeatures";
 import LinkExternal from "@/components/shared/LinkExternal";
+import { LinkPreview } from "@/components/ui/LinkPreview";
 
 const components = {
   h1: ({ ...props }) => (
@@ -121,6 +122,7 @@ const components = {
   CashInTransitFeatures,
   PropertySystemFeatures,
   LinkExternal,
+  LinkPreview,
 };
 
 interface MdxProps {

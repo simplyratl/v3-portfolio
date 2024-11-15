@@ -25,9 +25,10 @@ export default function About() {
         </LinkPreview>
       </div>
       <p>
-        Outside of programming, I enjoy traveling. Right now I live in
-        Podgorica, Montenegro. If you are around, feel free to reach me out, we
-        could have some coffee or work together.
+        Bcs. in Information Technology from the{" "}
+        <LinkPreview url="https://unimediteran.net/" external>
+          University of Mediterranean
+        </LinkPreview>
       </p>
     </div>
   );
