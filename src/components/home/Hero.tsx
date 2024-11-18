@@ -116,7 +116,9 @@ const ModernLayout = ({ children }: { children: React.ReactNode }) => {
               <ButtonTabs />
             </motion.div>
 
-            <motion.div variants={itemVariants}>{children}</motion.div>
+            <motion.div variants={itemVariants} className="min-h-[300px]">
+              {children}
+            </motion.div>
           </motion.div>
         </main>
       </div>

@@ -21,9 +21,9 @@ export default function BlogSearch({
   const [blogs] = useState(allBlogs);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
 
-  const filteredBlogs = blogs.filter((blog) =>
-    blog.title.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filteredBlogs = blogs
+    .filter((blog) => blog.title.toLowerCase().includes(search.toLowerCase()))
+    .splice(0, 3);
 
   const handleFocus = () => {
     setShouldShowSuggestions(true);
@@ -129,6 +129,18 @@ export default function BlogSearch({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [setShouldShowSuggestions]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "k" && event.metaKey) {
+        event.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <div
       className="search-container relative z-50"
@@ -160,6 +172,24 @@ export default function BlogSearch({
           aria-label="Search blogs"
           aria-autocomplete="list"
         />
+
+        <AnimatePresence>
+          {!shouldShowSuggestions && search.length === 0 && (
+            <motion.p
+              initial={{ opacity: 0, x: 10, y: "-50%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 10 }}
+              className="absolute right-4 top-1/2 text-muted-foreground"
+            >
+              <kbd className="pointer-events-none inline-flex select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-sm font-medium text-muted-foreground opacity-100">
+                <span>⌘</span>
+              </kbd>
+              <kbd className="pointer-events-none ml-2 inline-flex select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-sm font-medium text-muted-foreground opacity-100">
+                <span>K</span>
+              </kbd>
+            </motion.p>
+          )}
+        </AnimatePresence>
 
         {search && (
           <button
@@ -223,6 +253,15 @@ export default function BlogSearch({
                   </Link>
                 </li>
               ))}
+
+              {filteredBlogs.length > 0 && (
+                <div className="flex items-center justify-between px-4 py-2 text-sm text-muted/60">
+                  <p>Press Enter to select</p>
+                  <p className="text-muted/60">
+                    {activeIndex + 1} of {filteredBlogs.length}
+                  </p>
+                </div>
+              )}
 
               {filteredBlogs.length === 0 && (
                 <li className="p-4 text-muted/60" role="alert">
