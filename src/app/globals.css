@@ -169,9 +169,13 @@ a {
   --delay-offset: 1000ms;
 }
 
+.no-slide-animation {
+  animation: none !important;
+}
+
 /* width */
 ::-webkit-scrollbar {
-  @apply w-2;
+  @apply w-2 h-2;
 }
 
 /* Track */
@@ -195,4 +199,8 @@ a {
 
 #toc:hover::-webkit-scrollbar {
   @apply block;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
 }

@@ -8,7 +8,7 @@ import Header from "@/components/shared/Header";
 import { MapPin } from "lucide-react";
 
 const TopFadeBackground = () => (
-  <div className="pointer-events-none absolute inset-x-0 top-0 z-[-1] h-40 bg-gradient-to-b from-muted/10 to-background" />
+  <div className="pointer-events-none absolute inset-x-0 top-0 z-[-1] h-40 bg-gradient-to-b from-muted/10 to-transparent" />
 );
 
 const ModernLayout = ({ children }: { children: React.ReactNode }) => {
