@@ -179,7 +179,7 @@ export default function BlogSearch({
               initial={{ opacity: 0, x: 10, y: "-50%" }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
-              className="absolute right-4 top-1/2 text-muted-foreground"
+              className="absolute right-4 top-1/2 hidden text-muted-foreground md:block"
             >
               <kbd className="pointer-events-none inline-flex select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-sm font-medium text-muted-foreground opacity-100">
                 <span>⌘</span>
