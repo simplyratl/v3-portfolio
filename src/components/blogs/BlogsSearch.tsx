@@ -200,6 +200,7 @@ export default function BlogSearch({
                 >
                   <Link
                     href={blog.slug}
+                    prefetch
                     className="flex h-full items-center gap-2 p-4 font-semibold text-foreground !no-underline outline-none focus:bg-zinc-500/30"
                     onClick={(e) => {
                       e.preventDefault();
