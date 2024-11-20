@@ -190,7 +190,7 @@ export default function SingleProject({ projects }: ProjectPage) {
                     transition: { duration: 0.2, ...spring },
                   }}
                   className={cn(
-                    "flex items-center gap-2 rounded-full border border-primary/20 bg-background/50 px-4 py-1.5 text-sm backdrop-blur-sm transition-colors hover:border-primary/50 hover:bg-primary/5",
+                    "flex items-center gap-2 rounded-full border border-primary/20 bg-background/50 px-4 py-1.5 text-sm saturate-200 backdrop-blur-sm transition-colors hover:border-primary/50 hover:bg-primary/5",
                   )}
                 >
                   {tech}

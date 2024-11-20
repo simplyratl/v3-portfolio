@@ -148,7 +148,7 @@ export default function ButtonTabs() {
       >
         <div className="relative flex gap-1 p-2">
           <div
-            className="absolute inset-0 rounded-3xl bg-background/5 backdrop-blur-sm"
+            className="absolute inset-0 rounded-3xl bg-background/5 saturate-200 backdrop-blur-sm"
             style={{
               boxShadow: "inset 0 1px 1px hsl(var(--foreground) / 0.3)",
             }}
@@ -196,6 +196,7 @@ export default function ButtonTabs() {
               </motion.button>
             ))}
           </AnimatePresence>
+          <div className="absolute inset-0 z-[-1] bg-[radial-gradient(60%_120%_at_50%_0%,hsl(var(--muted)/0.4)_0%,transparent_70%)] opacity-20"></div>
         </div>
 
         <AnimatePresence>
@@ -234,7 +235,7 @@ export default function ButtonTabs() {
                     className={cn(
                       "relative z-10 flex items-center space-x-2 rounded-full px-4 py-0.5",
                       "ring-1 ring-white/10 transition-all duration-200",
-                      "bg-background text-foreground",
+                      "bg-background/70 text-foreground",
                       stackActive && "bg-foreground text-background",
                     )}
                   >

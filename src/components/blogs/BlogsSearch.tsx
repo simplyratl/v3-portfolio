@@ -20,6 +20,7 @@ export default function BlogSearch({
   const [search, setSearch] = useState("");
   const [blogs] = useState(allBlogs);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const [isMac] = useState(navigator.userAgent.includes("Mac"));
 
   const filteredBlogs = blogs
     .filter((blog) => blog.title.toLowerCase().includes(search.toLowerCase()))
@@ -131,7 +132,7 @@ export default function BlogSearch({
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "k" && event.metaKey) {
+      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
         event.preventDefault();
         inputRef.current?.focus();
       }
@@ -179,12 +180,12 @@ export default function BlogSearch({
               initial={{ opacity: 0, x: 10, y: "-50%" }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 10 }}
-              className="absolute right-4 top-1/2 hidden text-muted-foreground md:block"
+              className="absolute right-4 top-1/2 hidden items-center text-muted-foreground md:flex"
             >
-              <kbd className="pointer-events-none inline-flex select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-sm font-medium text-muted-foreground opacity-100">
-                <span>⌘</span>
+              <kbd className="pointer-events-none inline-flex h-6 select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-lg font-medium text-muted-foreground opacity-100">
+                <span>{isMac ? "⌘" : "Ctrl"}</span>
               </kbd>
-              <kbd className="pointer-events-none ml-2 inline-flex select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-sm font-medium text-muted-foreground opacity-100">
+              <kbd className="pointer-events-none ml-1 inline-flex h-6 select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-sm font-medium text-muted-foreground opacity-100">
                 <span>K</span>
               </kbd>
             </motion.p>
@@ -210,7 +211,7 @@ export default function BlogSearch({
             transition={{
               duration: 0.36,
             }}
-            className="no-slide-animation absolute left-0 top-[calc(100%+8px)] isolate z-[99999] w-full overflow-hidden rounded-xl border border-muted/10 bg-zinc-300/20 shadow-lg backdrop-blur dark:bg-zinc-900/40"
+            className="no-slide-animation absolute left-0 top-[calc(100%+8px)] isolate z-[99999] w-full overflow-hidden rounded-xl border border-muted/10 bg-zinc-300/20 shadow-lg saturate-200 backdrop-blur dark:bg-zinc-900/40"
             role="listbox"
             tabIndex={-1}
           >
@@ -245,7 +246,7 @@ export default function BlogSearch({
                     tabIndex={0}
                   >
                     <div>
-                      <h3 className="text-base">{blog.title}</h3>
+                      <h3 className="articulat-cf text-base">{blog.title}</h3>
                       <p className="text-sm text-muted/40">
                         {blog.description}
                       </p>

@@ -32,7 +32,8 @@ const CircularProgress = ({
     <div
       className={cn(
         "relative flex items-center justify-center p-1",
-        background && "rounded-full bg-background/50 backdrop-blur",
+        background &&
+          "rounded-full bg-background/50 saturate-200 backdrop-blur",
       )}
     >
       <svg

@@ -11,7 +11,7 @@
     --secondary-foreground: 120 4% 11%;
 
     --muted: 120 4% 20%;
-    --muted-foreground: 0 0% 100%;
+    --muted-foreground: 0 0% 0%;
 
     --primary: 120 4% 11%;
     --primary-foreground: 0 0% 100%;
@@ -21,8 +21,10 @@
   }
 
   .dark {
-    --background: 0 0% 4%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 95%;
+
+    /*#1F1F1F*/
 
     --secondary: 0 0% 100%;
     --secondary-foreground: 120 4% 11%;

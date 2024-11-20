@@ -118,7 +118,7 @@ const ProjectList = () => {
           {canScrollLeft && (
             <button
               onClick={scrollLeft}
-              className="absolute left-0 top-0 z-10 flex h-7 w-16 items-center bg-gradient-to-r from-background from-20% pr-2"
+              className="absolute left-0 top-0 z-10 flex h-7 w-16 items-center bg-gradient-to-r from-background/80 from-20% pr-2"
               aria-label="Scroll left"
             >
               <ArrowLeft className="size-5" />
@@ -148,7 +148,7 @@ const ProjectList = () => {
           {canScrollRight && (
             <button
               onClick={scrollRight}
-              className="absolute right-0 top-0 z-10 flex h-7 w-16 items-center justify-center bg-gradient-to-l from-background from-50% pl-2"
+              className="absolute right-0 top-0 z-10 flex h-7 w-16 items-center justify-center bg-gradient-to-l from-background/80 from-50% pl-2"
               aria-label="Scroll right"
             >
               <ArrowRight className="size-5" />

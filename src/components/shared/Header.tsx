@@ -186,7 +186,7 @@ export default function Header({
         className={cn(
           "flex items-center justify-between",
           fixed &&
-            "fixed left-0 right-0 top-0 z-50 bg-background/60 p-4 backdrop-blur duration-300",
+            "fixed left-0 right-0 top-0 z-50 bg-background/60 p-4 saturate-200 backdrop-blur duration-300",
           fixed && isMenuOpen && "bg-background backdrop-blur-none",
           !fixed && "h-10",
           className,
@@ -227,7 +227,9 @@ export default function Header({
         <div className="flex flex-1 items-center justify-end gap-4">
           <ToggleTheme
             className={
-              transparentSwitch ? "bg-background/20 backdrop-blur" : ""
+              transparentSwitch
+                ? "bg-background/20 saturate-200 backdrop-blur"
+                : ""
             }
           />
 
