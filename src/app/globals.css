@@ -21,10 +21,8 @@
   }
 
   .dark {
-    --background: 0 0% 8%;
+    --background: 0 0% 4%;
     --foreground: 0 0% 95%;
-
-    /*#1F1F1F*/
 
     --secondary: 0 0% 100%;
     --secondary-foreground: 120 4% 11%;
