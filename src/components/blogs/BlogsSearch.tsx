@@ -20,7 +20,6 @@ export default function BlogSearch({
   const [search, setSearch] = useState("");
   const [blogs] = useState(allBlogs);
   const [activeIndex, setActiveIndex] = useState<number>(-1);
-  const [isMac] = useState(navigator.userAgent.includes("Mac"));
 
   const filteredBlogs = blogs
     .filter((blog) => blog.title.toLowerCase().includes(search.toLowerCase()))
@@ -183,7 +182,7 @@ export default function BlogSearch({
               className="absolute right-4 top-1/2 hidden items-center text-muted-foreground md:flex"
             >
               <kbd className="pointer-events-none inline-flex h-6 select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-lg font-medium text-muted-foreground opacity-100">
-                <span>{isMac ? "⌘" : "Ctrl"}</span>
+                <span>⌘</span>
               </kbd>
               <kbd className="pointer-events-none ml-1 inline-flex h-6 select-none items-center gap-1 rounded border border-muted/40 bg-muted/10 px-1.5 font-mono text-sm font-medium text-muted-foreground opacity-100">
                 <span>K</span>
